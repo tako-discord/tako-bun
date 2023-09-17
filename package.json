@@ -8,7 +8,7 @@
 		"deploy": "bun src/util/deploy.ts",
 		"format": "prettier --write . && eslint ./src --ext .ts --fix --format=pretty",
 		"start": "bun src/index.ts",
-		"dev": "bun src/index.ts --watch"
+		"dev": "bunx nodemon --exec bun src/index.ts"
 	},
 	"dependencies": {
 		"@discordjs/core": "^0.6.0",
