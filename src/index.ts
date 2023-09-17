@@ -14,4 +14,4 @@ const commands = await loadCommands(new URL('commands/', import.meta.url));
 registerEvents(commands, events, client);
 
 // Login to the client
-void client.login();
+void client.login(Bun.env.TOKEN);
