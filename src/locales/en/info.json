@@ -2,6 +2,7 @@
 	"ping": {
 		"name": "ping",
 		"description": "Ping the bot",
-		"response": "Pong! ({{latency}}ms.)"
+		"title": "Pong!",
+		"response": "{{latency, number}}ms."
 	}
 }
