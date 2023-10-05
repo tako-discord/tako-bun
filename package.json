@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"commit": "bunx cz",
+		"commit": "cz",
 		"lint": "prettier --check . && eslint ./src --ext .ts --format=pretty",
 		"deploy": "bun src/util/deploy.ts",
 		"format": "prettier --write . && eslint ./src --ext .ts --fix --format=pretty",
