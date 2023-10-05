@@ -1,5 +1,6 @@
 const config = {
 	debug: true,
+	devs: ['751092600890458203'],
 	colors: {
 		primary: 0x299ba3,
 		accent: 0x5bd79d,
