@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import enErrors from './locales/en/errors.json';
 import enInfo from './locales/en/info.json';
 
 export const defaultNS = 'enInfo';
@@ -9,6 +10,7 @@ await i18next.init({
 	resources: {
 		en: {
 			info: enInfo,
+			errors: enErrors,
 		},
 	},
 });
