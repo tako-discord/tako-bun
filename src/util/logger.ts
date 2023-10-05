@@ -6,11 +6,11 @@ const file = Bun.file('./bot.log');
 await Bun.write(file, '');
 const writer = file.writer();
 
-export const log: Logger<ILogObj> = new Logger({
+export const logger: Logger<ILogObj> = new Logger({
 	minLevel: config.debug ? 2 : 3,
 	type: 'hidden',
 });
-log.attachTransport(async (logObj) => {
+logger.attachTransport(async (logObj) => {
 	writer.ref();
 	// eslint-disable-next-line @typescript-eslint/no-base-to-string
 	writer.write(

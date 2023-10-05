@@ -1,13 +1,13 @@
 import { setInterval } from 'node:timers';
 import { ActivityType, Events } from 'discord.js';
-import { log } from '../util/logger.ts';
+import { logger } from '../util/logger.ts';
 import type { Event } from './index.ts';
 
 export default {
 	name: Events.ClientReady,
 	once: true,
 	async execute(client) {
-		log.info(`Ready! Logged in as ${client.user.tag}`);
+		logger.info(`Ready! Logged in as ${client.user.tag}`);
 
 		setInterval(() => {
 			const activities = [
