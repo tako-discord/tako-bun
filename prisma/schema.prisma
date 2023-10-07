@@ -11,9 +11,11 @@ datasource db {
 }
 
 model User {
-  id      String  @id @unique
-  uuid    String  @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  license String?
+  id         String  @id @unique
+  uuid       String  @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  color      Int?
+  background String?
+  license    String?
 }
 
 enum ReplyStyle {
