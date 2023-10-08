@@ -1,8 +1,8 @@
 import type { GuildMemberRoleManager, UserFlagsBitField } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
-import i18next from '../i18n.ts';
-import { createEmbed, getBanner, getColor, getLanguage } from '../util/general.ts';
-import type { Command } from './index.ts';
+import i18next from '../../i18n.ts';
+import { createEmbed, getBanner, getColor, getLanguage } from '../../util/general.ts';
+import type { Command } from '../index.ts';
 
 function handleFlags(flags: Readonly<UserFlagsBitField>, language: string) {
 	const flagsArray = [];

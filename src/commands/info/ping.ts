@@ -1,6 +1,6 @@
-import i18next from '../i18n.ts';
-import { createEmbed, getLanguage } from '../util/general.ts';
-import type { Command } from './index.ts';
+import i18next from '../../i18n.ts';
+import { createEmbed, getLanguage } from '../../util/general.ts';
+import type { Command } from '../index.ts';
 
 export default {
 	data: {

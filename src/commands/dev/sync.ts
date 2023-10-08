@@ -1,10 +1,11 @@
+import { readdir } from 'node:fs/promises';
 import { API } from '@discordjs/core/http-only';
 import { REST } from 'discord.js';
-import i18next from '../i18n.ts';
-import { isDev } from '../util/checks.ts';
-import { createEmbed, getLanguage } from '../util/general.ts';
-import { loadCommands } from '../util/loaders.ts';
-import type { Command } from './index.ts';
+import i18next from '../../i18n.js';
+import { isDev } from '../../util/checks.js';
+import { createEmbed, getLanguage } from '../../util/general.js';
+import { loadCommands } from '../../util/loaders.js';
+import type { Command } from '../index.js';
 
 export default {
 	data: {
@@ -12,7 +13,7 @@ export default {
 		description: 'Sync application commands with Discord',
 	},
 	async execute(interaction) {
-		const language = getLanguage(interaction.guildId);
+		const language = await getLanguage(interaction.guildId);
 
 		if (!isDev(interaction.client, interaction.user.id)) {
 			const embed = createEmbed({
@@ -25,8 +26,20 @@ export default {
 			return;
 		}
 
-		const commands = await loadCommands(Bun.pathToFileURL(import.meta.dir));
-		const commandData = [...commands.values()].map((command) => command.data);
+		const commands = [];
+		const commandData = [];
+
+		for (const dir of (await readdir(`${import.meta.dir}/commands`, { withFileTypes: true }))
+			.filter((dirent) => dirent.isDirectory())
+			.map((dirent) => dirent.name)) {
+			commands.push(await loadCommands(Bun.pathToFileURL(`${import.meta.dir}/commands/${dir}`)));
+		}
+
+		for (const command of commands) {
+			for (const cmd of [...command.values()].map((command) => command.data)) {
+				commandData.push(cmd);
+			}
+		}
 
 		const rest = new REST({ version: '10' }).setToken(Bun.env.DISCORD_TOKEN!);
 		const api = new API(rest);
