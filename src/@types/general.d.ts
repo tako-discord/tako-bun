@@ -1,3 +1,4 @@
+import type { APIEmbedField } from 'discord.js';
 import type config from '../../config.ts';
 
 export type EmbedOptions = {
