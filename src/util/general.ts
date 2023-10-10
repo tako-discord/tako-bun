@@ -7,8 +7,7 @@ import prisma from '../database.ts';
 export function createEmbed({ color = 'primary', description, emoji, fields, image, thumbnail, title }: EmbedOptions) {
 	const embed = new EmbedBuilder()
 		.setColor(typeof color === 'string' ? config.colors[color] : color)
-		// eslint-disable-next-line @typescript-eslint/no-base-to-string
-		.setTitle(`${emoji ? config.emojis[emoji] : ''} ${title}`);
+		.setTitle(`${emoji ? config.emojis[emoji] + ' ' : ''}${title}`);
 
 	if (description) embed.setDescription(description);
 	if (fields) embed.setFields(fields);
