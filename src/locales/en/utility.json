@@ -1,0 +1,9 @@
+{
+	"stickyMessages": {
+		"modal": {
+			"title": "Sticky Messages",
+			"label": "Message",
+			"placeholder": "Enter your message here. It will always be displayed at the bottom of the channel."
+		}
+	}
+}
