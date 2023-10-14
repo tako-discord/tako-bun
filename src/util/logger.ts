@@ -7,7 +7,7 @@ await Bun.write(file, '');
 const writer = file.writer();
 
 export const logger: Logger<ILogObj> = new Logger({
-	minLevel: config.debug ? 2 : 3,
+	minLevel: config.dev ? 2 : 3,
 	type: 'hidden',
 });
 logger.attachTransport(async (logObj) => {

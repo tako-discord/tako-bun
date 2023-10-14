@@ -1,6 +1,7 @@
 import { readdir } from 'node:fs/promises';
 import { API } from '@discordjs/core/http-only';
 import { REST } from 'discord.js';
+import config from '../../config.ts';
 import { loadCommands } from './loaders.ts';
 
 const commands = [];
@@ -25,6 +26,18 @@ for (const command of commands) {
 const rest = new REST({ version: '10' }).setToken(Bun.env.DISCORD_TOKEN!);
 const api = new API(rest);
 
-const result = await api.applicationCommands.bulkOverwriteGlobalCommands(Bun.env.APPLICATION_ID!, commandData);
+let result;
+if (config.dev && config.guilds.dev) {
+	result = await api.applicationCommands.bulkOverwriteGuildCommands(
+		Bun.env.APPLICATION_ID!,
+		config.guilds.dev,
+		commandData,
+	);
+} else {
+	result = await api.applicationCommands.bulkOverwriteGlobalCommands(Bun.env.APPLICATION_ID!, commandData);
+	await api.applicationCommands.bulkOverwriteGuildCommands(Bun.env.APPLICATION_ID!, config.guilds.dev!, []);
+}
 
-console.info(`Successfully registered ${result.length} commands.`);
+console.info(
+	`Successfully registered ${result.length} commands.${config.dev ? ` In the guild ${config.guilds.dev}!` : ''}`,
+);
