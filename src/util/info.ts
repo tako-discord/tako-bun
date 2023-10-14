@@ -20,10 +20,10 @@ function handleFlags(flags: Readonly<UserFlagsBitField>, language: string) {
 			addable = '';
 		}
 
-		flagsArray.push(i18next.t(`user.flag.${flag}`, { ns: 'info', lng: language }) + addable);
+		flagsArray.push(i18next.t(`info.user.flag.${flag}`, { ns: 'info', lng: language }) + addable);
 	}
 
-	if (flagsArray.length === 0) return i18next.t('user.noFlags', { ns: 'info', lng: language });
+	if (flagsArray.length === 0) return i18next.t('info.user.noFlags', { ns: 'info', lng: language });
 	return flagsArray.join('');
 }
 
@@ -50,7 +50,7 @@ function handleRoles(roles: GuildMemberRoleManager, language: string) {
 		rolesArray.push(role.toString() + addable);
 	}
 
-	if (rolesArray.length === 0) return i18next.t('user.noRoles', { ns: 'info', lng: language });
+	if (rolesArray.length === 0) return i18next.t('info.user.noRoles', { ns: 'info', lng: language });
 	return rolesArray.join('');
 }
 
@@ -63,17 +63,19 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 
 	const general = [
 		'',
-		i18next.t('user.username', { ns: 'info', lng: language, username: target.tag }),
-		i18next.t('user.id', { ns: 'info', lng: language, id: target.id }),
-		i18next.t('user.flags', {
+		i18next.t('info.user.username', { ns: 'info', lng: language, username: target.tag }),
+		i18next.t('info.user.id', { ns: 'info', lng: language, id: target.id }),
+		i18next.t('info.user.flags', {
 			ns: 'info',
 			lng: language,
-			flags: target.flags ? handleFlags(target.flags, 'en') : i18next.t('user.noFlags', { ns: 'info', lng: language }),
+			flags: target.flags
+				? handleFlags(target.flags, 'en')
+				: i18next.t('info.user.noFlags', { ns: 'info', lng: language }),
 		}),
 	];
 	if (target.createdTimestamp) {
 		general.push(
-			i18next.t('user.created', {
+			i18next.t('info.user.created', {
 				ns: 'info',
 				lng: language,
 				date: `<t:${Math.round(target.createdTimestamp / 1_000)}:d>`,
@@ -84,7 +86,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 
 	if (target.avatar) {
 		general.push(
-			i18next.t('user.avatar', { ns: 'info', lng: language }) +
+			i18next.t('info.user.avatar', { ns: 'info', lng: language }) +
 				`[PNG](${target.avatarURL({ extension: 'png' })}) | [JPG](${target.avatarURL({
 					extension: 'jpg',
 				})}) | [WEBP](${target.avatarURL({ extension: 'webp' })})${
@@ -92,11 +94,11 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 				}`,
 		);
 	} else {
-		general.push(i18next.t('user.avatar', { ns: 'info', lng: language }) + `[URL](${target.defaultAvatarURL})`);
+		general.push(i18next.t('info.user.avatar', { ns: 'info', lng: language }) + `[URL](${target.defaultAvatarURL})`);
 	}
 
 	fields.push({
-		name: i18next.t('user.general', { ns: 'info', lng: language }),
+		name: i18next.t('info.user.general', { ns: 'info', lng: language }),
 		value: general.join(seperator),
 	});
 
@@ -104,22 +106,22 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 	if (member) {
 		const server = [
 			'',
-			i18next.t('user.roles', {
+			i18next.t('info.user.roles', {
 				ns: 'info',
 				lng: language,
-				roles: handleRoles(member.roles, language) ?? i18next.t('user.noRoles', { ns: 'info', lng: language }),
+				roles: handleRoles(member.roles, language) ?? i18next.t('info.user.noRoles', { ns: 'info', lng: language }),
 			}),
 		];
 
 		if (member.roles.cache.size > 1) {
-			server.push(i18next.t('user.topRole', { ns: 'info', lng: language, role: member.roles.highest.id }));
+			server.push(i18next.t('info.user.topRole', { ns: 'info', lng: language, role: member.roles.highest.id }));
 			if (member.roles.hoist)
-				server.push(i18next.t('user.hoistRole', { ns: 'info', lng: language, role: member.roles.hoist.id }));
+				server.push(i18next.t('info.user.hoistRole', { ns: 'info', lng: language, role: member.roles.hoist.id }));
 		}
 
 		if (member.joinedTimestamp) {
 			server.push(
-				i18next.t('user.joined', {
+				i18next.t('info.user.joined', {
 					ns: 'info',
 					lng: language,
 					date: `<t:${Math.round(member.joinedTimestamp / 1_000)}:d>`,
@@ -133,7 +135,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 			target.defaultAvatarURL === target.displayAvatarURL({ extension: 'png' })
 		) {
 			server.push(
-				i18next.t('user.serverAvatar', { ns: 'info', lng: language }) +
+				i18next.t('info.user.serverAvatar', { ns: 'info', lng: language }) +
 					`[PNG](${target.displayAvatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.displayAvatarURL({
 						extension: 'jpg',
 						size: 4_096,
@@ -146,14 +148,14 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 		}
 
 		fields.push({
-			name: i18next.t('user.server', { ns: 'info', lng: language }),
+			name: i18next.t('info.user.server', { ns: 'info', lng: language }),
 			value: server.join(seperator),
 		});
 	}
 
 	const embed = createEmbed({
-		title: i18next.t('user.title', { ns: 'info', lng: language, user: target.displayName }),
-		description: i18next.t('user.embedDescription', { ns: 'info', lng: language, user: target.id }),
+		title: i18next.t('info.user.title', { ns: 'info', lng: language, user: target.displayName }),
+		description: i18next.t('info.user.embedDescription', { ns: 'info', lng: language, user: target.id }),
 		color: await getColor(interaction.guildId, target.id, interaction.client),
 		fields,
 		thumbnail: target.displayAvatarURL(),
