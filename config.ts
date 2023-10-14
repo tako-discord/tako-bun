@@ -1,6 +1,10 @@
 const config = {
-	debug: true,
-	devs: ['751092600890458203'],
+	dev: true,
+	guilds: {
+		main: '884046271176912917',
+		dev: '884046271176912917',
+	},
+	devs: ['751092600890458203', '429303151598895106'],
 	colors: {
 		primary: 0x299ba3,
 		accent: 0x5bd79d,
@@ -12,7 +16,13 @@ const config = {
 		ping: '🏓',
 		success: '✅',
 		error: '❌',
-	},
+		pagination: {
+			first: '⏮️',
+			previous: '◀️',
+			next: '▶️',
+			last: '⏭️',
+		},
+	} as const,
 };
 
 export default config;

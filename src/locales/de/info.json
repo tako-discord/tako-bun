@@ -1,0 +1,20 @@
+{
+	"ping": {
+		"name": "ping",
+		"description": "Pinge den Bot"
+	},
+	"info": {
+		"name": "info",
+		"description": "Erhalte Informationen über irgendwas",
+		"user": {
+			"name": "nutzer",
+			"description": "Erhalte Informationen über einen Nutzer oder dich selbst",
+			"options": {
+				"user": {
+					"name": "nutzer",
+					"description": "Der Nutzer, über den du Informationen erhalten möchtest"
+				}
+			}
+		}
+	}
+}

@@ -5,44 +5,53 @@
 		"title": "Pong!",
 		"response": "{{latency, number}}ms."
 	},
-	"user": {
-		"name": "user",
-		"description": "Get info about a user",
-		"target": "The user to get the info from",
-		"title": "Info for {{user}}",
-		"embedDescription": "Here is some information about <@{{user}}>",
-		"general": "General",
-		"username": "**Username**: {{username}}",
-		"id": "**ID**: {{id}}",
-		"flags": "**Flags**: {{- flags}}",
-		"noFlags": "*No Flags*",
-		"flag": {
-			"Staff": "Staff",
-			"Partner": "Partnered Server Owner",
-			"HypeSquad": "HypeSquad Events",
-			"BugHunterLevel1": "Discord Bug Hunter",
-			"HypeSquadOnlineHouse1": "HypeSquad Bravery",
-			"HypeSquadOnlineHouse2": "HypeSquad Brilliance",
-			"HypeSquadOnlineHouse3": "HypeSquad Balance",
-			"PremiumEarlySupporter": "Early Supporter",
-			"TeamUser": "Team",
-			"BugHunterLevel2": "Discord Bug Hunter",
-			"VerifiedBot": "Verified Bot",
-			"VerifiedDeveloper": "Early Verified Bot Developer",
-			"CertifiedModerator": "Moderator Programs Alumni",
-			"BotHTTPInteractions": "Bot uses only HTTP interactions",
-			"Spammer": "Spammer",
-			"ActiveDeveloper": "Active Developer"
-		},
-		"created": "**Created on**: {{- date }} ({{- relative}})",
-		"avatar": "**Avatar**: ",
-		"server": "Server",
-		"joined": "**Joined on**: {{- date}} ({{- relative}})",
-		"unknown": "Unknown",
-		"roles": "**Roles**: {{- roles}}",
-		"noRoles": "*No Roles*",
-		"topRole": "**Top Role**: <@&{{role}}>",
-		"hoistRole": "**Hoist Role**: <@&{{role}}>",
-		"serverAvatar": "**Server Avatar**: "
+	"info": {
+		"name": "info",
+		"description": "Get info about anything",
+		"user": {
+			"name": "user",
+			"description": "Get info about a user or yourself",
+			"options": {
+				"user": {
+					"name": "user",
+					"description": "The user to get the info from"
+				}
+			},
+			"title": "Info for {{user}}",
+			"embedDescription": "Here is some information about <@{{user}}>",
+			"general": "General",
+			"username": "**Username**: {{username}}",
+			"id": "**ID**: {{id}}",
+			"flags": "**Flags**: {{- flags}}",
+			"noFlags": "*No Flags*",
+			"flag": {
+				"Staff": "Staff",
+				"Partner": "Partnered Server Owner",
+				"HypeSquad": "HypeSquad Events",
+				"BugHunterLevel1": "Discord Bug Hunter",
+				"HypeSquadOnlineHouse1": "HypeSquad Bravery",
+				"HypeSquadOnlineHouse2": "HypeSquad Brilliance",
+				"HypeSquadOnlineHouse3": "HypeSquad Balance",
+				"PremiumEarlySupporter": "Early Supporter",
+				"TeamUser": "Team",
+				"BugHunterLevel2": "Discord Bug Hunter",
+				"VerifiedBot": "Verified Bot",
+				"VerifiedDeveloper": "Early Verified Bot Developer",
+				"CertifiedModerator": "Moderator Programs Alumni",
+				"BotHTTPInteractions": "Bot uses only HTTP interactions",
+				"Spammer": "Spammer",
+				"ActiveDeveloper": "Active Developer"
+			},
+			"created": "**Created on**: {{- date }} ({{- relative}})",
+			"avatar": "**Avatar**: ",
+			"server": "Server",
+			"joined": "**Joined on**: {{- date}} ({{- relative}})",
+			"unknown": "Unknown",
+			"roles": "**Roles**: {{- roles}}",
+			"noRoles": "*No Roles*",
+			"topRole": "**Top Role**: <@&{{role}}>",
+			"hoistRole": "**Hoist Role**: <@&{{role}}>",
+			"serverAvatar": "**Server Avatar**: "
+		}
 	}
 }

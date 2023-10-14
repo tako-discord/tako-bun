@@ -1,13 +1,14 @@
 import type { Client } from 'discord.js';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, Locale } from 'discord.js';
 import config from '../../config.ts';
 import type { EmbedOptions } from '../@types/general';
 import prisma from '../database.ts';
+import i18next from '../i18n.ts';
 
 export function createEmbed({ color = 'primary', description, emoji, fields, image, thumbnail, title }: EmbedOptions) {
 	const embed = new EmbedBuilder()
 		.setColor(typeof color === 'string' ? config.colors[color] : color)
-		.setTitle(`${emoji ? config.emojis[emoji] + ' ' : ''}${title}`);
+		.setTitle(`${emoji ? emoji + ' ' : ''}${title}`);
 
 	if (description) embed.setDescription(description);
 	if (fields) embed.setFields(fields);
@@ -47,6 +48,17 @@ export async function getLanguage(guildId: string | null) {
 	}
 
 	return language;
+}
+
+export function slashCommandTranslator(key: string, ns: string) {
+	const translation: { [index: string]: string } = {};
+	const locales = Object.values(Locale);
+
+	for (const locale of locales) {
+		translation[locale] = i18next.t(key, { ns, lng: locale });
+	}
+
+	return translation;
 }
 
 export async function getBanner(userId: string) {

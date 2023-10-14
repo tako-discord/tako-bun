@@ -1,0 +1,9 @@
+{
+	"stickyMessages": {
+		"modal": {
+			"title": "Haftende Nachrichten",
+			"label": "Nachricht",
+			"placeholder": "Gebe hier deine Nachricht ein. Sie wird immer ganz unten im Kanal angezeigt."
+		}
+	}
+}

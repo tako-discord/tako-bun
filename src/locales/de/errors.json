@@ -1,0 +1,8 @@
+{
+	"checks": {
+		"devOnly": {
+			"title": "Geheime Sachen",
+			"description": "Du musst ein Entwickler sein, um diesen Befehl zu benutzen."
+		}
+	}
+}
