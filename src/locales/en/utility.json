@@ -1,9 +1,25 @@
 {
 	"stickyMessages": {
-		"modal": {
-			"title": "Sticky Messages",
-			"label": "Message",
-			"placeholder": "Enter your message here. It will always be displayed at the bottom of the channel."
+		"name": "sticky-message",
+		"description": "Sticky Messages allow you to display a message at the bottom of a channel",
+		"set": {
+			"name": "set",
+			"description": "Set the sticky message",
+			"options": {
+				"channel": {
+					"name": "channel",
+					"description": "The channel to set the sticky message in"
+				},
+				"embed": {
+					"name": "embed",
+					"description": "Whether or not to send the message as an embed"
+				}
+			},
+			"modal": {
+				"title": "Sticky Messages",
+				"label": "Message",
+				"placeholder": "Enter your message here. It will always be displayed at the bottom of the channel."
+			}
 		}
 	}
 }

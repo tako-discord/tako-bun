@@ -1,9 +1,25 @@
 {
 	"stickyMessages": {
-		"modal": {
-			"title": "Haftende Nachrichten",
-			"label": "Nachricht",
-			"placeholder": "Gebe hier deine Nachricht ein. Sie wird immer ganz unten im Kanal angezeigt."
+		"name": "haftende-nachricht",
+		"description": "Haftende Nachrichten werden immer ganz unten in einem Kanal angezeigt",
+		"set": {
+			"name": "setzen",
+			"description": "Setzt eine haftende Nachricht in einem Kanal",
+			"options": {
+				"channel": {
+					"name": "kanal",
+					"description": "Der Kanal in dem die Nachricht gesendet werden soll"
+				},
+				"embed": {
+					"name": "embed",
+					"description": "Soll die Nachricht als Embed gesendet werden?"
+				}
+			},
+			"modal": {
+				"title": "Haftende Nachrichten",
+				"label": "Nachricht",
+				"placeholder": "Gebe hier deine Nachricht ein. Sie wird immer ganz unten im Kanal angezeigt."
+			}
 		}
 	}
 }
