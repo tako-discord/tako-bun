@@ -27,7 +27,8 @@ export default {
 		)
 		.toJSON(),
 	async execute(interaction) {
-		const target = interaction.options.getUser('target') ?? interaction.user;
+		const target =
+			interaction.options.getUser(i18next.t('info.user.options.user.name', { ns: 'info' })) ?? interaction.user;
 		await userInfo(interaction, target);
 	},
 } satisfies Command;
