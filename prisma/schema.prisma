@@ -34,3 +34,9 @@ model Guild {
   replyStyle     ReplyStyle @default(minWebhook)
   deleteOriginal Boolean    @default(false)
 }
+
+model Channel {
+  id             String  @id @unique
+  sticky_message String?
+  sticky_embed   Boolean @default(false)
+}
