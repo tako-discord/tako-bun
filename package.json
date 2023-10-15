@@ -17,7 +17,8 @@
 		"discord.js": "^14.13.0",
 		"i18next": "^23.5.1",
 		"prisma": "^5.4.2",
-		"tslog": "^4.9.2"
+		"tslog": "^4.9.2",
+		"uwuifier": "^4.0.5"
 	},
 	"devDependencies": {
 		"@sapphire/ts-config": "^5.0.0",

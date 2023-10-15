@@ -5,6 +5,7 @@ import deSecret from './locales/de/secret.json';
 import deUtility from './locales/de/utility.json';
 import enErrors from './locales/en/errors.json';
 import enInfo from './locales/en/info.json';
+import enMisc from './locales/en/misc.json';
 import enSecret from './locales/en/secret.json';
 import enUtility from './locales/en/utility.json';
 import hrInfo from './locales/hr/info.json';
@@ -18,6 +19,7 @@ await i18next.init({
 		en: {
 			errors: enErrors,
 			info: enInfo,
+			misc: enMisc,
 			secret: enSecret,
 			utility: enUtility,
 		},
