@@ -14,6 +14,7 @@ export default {
 		.setNameLocalizations(slashCommandTranslator('sync.name', 'secret'))
 		.setDescription(i18next.t('sync.description', { ns: 'secret' }))
 		.setDescriptionLocalizations(slashCommandTranslator('sync.description', 'secret'))
+		.setDefaultMemberPermissions(0)
 		.toJSON(),
 	async execute(interaction) {
 		await interaction.deferReply({ ephemeral: true });

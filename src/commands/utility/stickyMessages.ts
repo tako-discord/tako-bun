@@ -1,5 +1,12 @@
 import type { ChatInputCommandInteraction, ModalActionRowComponentBuilder } from 'discord.js';
-import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import {
+	ActionRowBuilder,
+	ModalBuilder,
+	PermissionsBitField,
+	SlashCommandBuilder,
+	TextInputBuilder,
+	TextInputStyle,
+} from 'discord.js';
 import i18next from '../../i18n.ts';
 import { getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import type { Command } from '../index.ts';
@@ -35,6 +42,7 @@ export default {
 						),
 				),
 		)
+		.setDefaultMemberPermissions(PermissionsBitField.Flags.ManageMessages)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		if (interaction.options.getSubcommand() === 'set') {

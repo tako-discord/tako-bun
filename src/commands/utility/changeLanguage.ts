@@ -1,5 +1,5 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
-import { SlashCommandBuilder } from 'discord.js';
+import { PermissionsBitField, SlashCommandBuilder } from 'discord.js';
 import { isLangCode } from 'is-language-code';
 import config from '../../../config.ts';
 import { languages } from '../../@types/utility.ts';
@@ -101,6 +101,7 @@ export default {
 						.setRequired(true),
 				),
 		)
+		.setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		const subcommand = interaction.options.getSubcommand();
