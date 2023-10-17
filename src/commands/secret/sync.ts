@@ -17,7 +17,7 @@ export default {
 		.toJSON(),
 	async execute(interaction) {
 		await interaction.deferReply({ ephemeral: true });
-		const language = await getLanguage(interaction.guildId);
+		const language = await getLanguage(interaction.guildId, interaction.user.id);
 
 		if (!isDev(interaction.client, interaction.user.id)) {
 			const embed = createEmbed({

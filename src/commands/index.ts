@@ -1,10 +1,16 @@
-import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction } from 'discord.js';
+import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction, AutocompleteInteraction } from 'discord.js';
 import type { StructurePredicate } from '../util/loaders.ts';
 
 /**
  * Defines the structure of a command
  */
 export type Command = {
+	/**
+	 * The function to execute when autocomplete is called
+	 *
+	 * @param interaction - The interaction of the command
+	 */
+	autocomplete?(interaction: AutocompleteInteraction): Promise<void> | void;
 	/**
 	 * The data for the command
 	 */

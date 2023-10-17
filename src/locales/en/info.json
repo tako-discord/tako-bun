@@ -25,7 +25,7 @@
 			"flags": "**Flags**: {{- flags}}",
 			"noFlags": "*No Flags*",
 			"flag": {
-				"Staff": "Staff",
+				"Staff": "Discord Staff",
 				"Partner": "Partnered Server Owner",
 				"HypeSquad": "HypeSquad Events",
 				"BugHunterLevel1": "Discord Bug Hunter",

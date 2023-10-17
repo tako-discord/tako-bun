@@ -69,7 +69,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 			ns: 'info',
 			lng: language,
 			flags: target.flags
-				? handleFlags(target.flags, 'en')
+				? handleFlags(target.flags, language)
 				: i18next.t('info.user.noFlags', { ns: 'info', lng: language }),
 		}),
 	];

@@ -16,6 +16,16 @@ export function registerEvents(client: Client, commands?: Map<string, Command>, 
 
 					await command.execute(interaction);
 				}
+
+				if (interaction.isAutocomplete()) {
+					const command = commands.get(interaction.commandName);
+
+					if (!command?.autocomplete) {
+						throw new Error(`Command '${interaction.commandName}' not found.`);
+					}
+
+					await command.autocomplete(interaction);
+				}
 			},
 		};
 

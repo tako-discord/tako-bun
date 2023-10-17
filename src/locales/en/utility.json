@@ -1,4 +1,23 @@
 {
+	"changeLanguage": {
+		"name": "change-language",
+		"description": "Change the language of the bot",
+		"personal": {
+			"name": "personal",
+			"description": "Change the language of the bot for yourself and personal messages"
+		},
+		"server": {
+			"name": "server",
+			"description": "Change the language of the bot for the whole server"
+		},
+		"options": {
+			"language": {
+				"name": "language",
+				"description": "The language you want to use for the bot"
+			}
+		},
+		"response": "Successfully changed the language to `{{language}}`"
+	},
 	"stickyMessages": {
 		"name": "sticky-message",
 		"description": "Sticky Messages allow you to display a message at the bottom of a channel",

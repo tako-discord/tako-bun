@@ -40,11 +40,16 @@ export async function getColor(guildId: string | null, userId?: string, client?:
 	return color;
 }
 
-export async function getLanguage(guildId: string | null) {
+export async function getLanguage(guildId: string | null, userId?: string) {
 	let language = 'en';
 	if (guildId) {
 		const guild = await prisma.guild.findFirst({ where: { id: guildId } });
 		if (guild?.language) language = guild.language;
+	}
+
+	if (userId) {
+		const user = await prisma.user.findFirst({ where: { id: userId } });
+		if (user?.language) language = user.language;
 	}
 
 	return language;

@@ -39,7 +39,7 @@ export default {
 	async execute(interaction: ChatInputCommandInteraction) {
 		if (interaction.options.getSubcommand() === 'set') {
 			const channel = interaction.options.getChannel('channel') ?? interaction.channel;
-			const language = await getLanguage(interaction.guildId);
+			const language = await getLanguage(interaction.guildId, interaction.user.id);
 			const embed = interaction.options.getBoolean('embed') ?? false;
 			const maxLength = embed ? 4_000 : 2_000;
 
