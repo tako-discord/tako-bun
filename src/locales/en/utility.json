@@ -1,6 +1,6 @@
 {
 	"changeLanguage": {
-		"name": "change-language",
+		"name": "set-language",
 		"description": "Change the language of the bot",
 		"personal": {
 			"name": "personal",
