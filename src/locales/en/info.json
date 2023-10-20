@@ -53,5 +53,9 @@
 			"hoistRole": "**Hoist Role**: <@&{{role}}>",
 			"serverAvatar": "**Server Avatar**: "
 		}
+	},
+	"urban": {
+		"name": "urban-dictionary",
+		"description": "Search the Urban Dictionary"
 	}
 }
