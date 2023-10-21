@@ -1,38 +1,25 @@
+import { readdirSync } from 'node:fs';
 import i18next from 'i18next';
-import deErrors from './locales/de/errors.json';
-import deInfo from './locales/de/info.json';
-import deSecret from './locales/de/secret.json';
-import deUtility from './locales/de/utility.json';
-import enErrors from './locales/en/errors.json';
-import enInfo from './locales/en/info.json';
-import enMisc from './locales/en/misc.json';
-import enSecret from './locales/en/secret.json';
-import enUtility from './locales/en/utility.json';
-import hrInfo from './locales/hr/info.json';
+import type { FsBackendOptions } from 'i18next-fs-backend';
+import FsBackend from 'i18next-fs-backend';
 
-export const defaultNS = 'enInfo';
+await i18next
+	.use(FsBackend)
+	.init<FsBackendOptions>({
+		fallbackLng: 'en',
+		returnEmptyString: false,
+		backend: {
+			loadPath: (import.meta.dir + '/locales/{{lng}}/{{ns}}.json')
+		}
+	});
 
-await i18next.init({
-	fallbackLng: 'en',
-	defaultNS,
-	resources: {
-		en: {
-			errors: enErrors,
-			info: enInfo,
-			misc: enMisc,
-			secret: enSecret,
-			utility: enUtility,
-		},
-		de: {
-			errors: deErrors,
-			info: deInfo,
-			secret: deSecret,
-			utility: deUtility,
-		},
-		hr: {
-			info: hrInfo,
-		},
-	},
-});
+const locales = readdirSync(import.meta.dir + '/locales')
+const namespaces = readdirSync(import.meta.dir + '/locales/en')
+for (const ns of namespaces) {
+	namespaces[namespaces.indexOf(ns)] = ns.split('.')[0]
+}
+
+await i18next.loadNamespaces(namespaces);
+await i18next.loadLanguages(locales);
 
 export { default } from 'i18next';
