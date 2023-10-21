@@ -1,7 +1,9 @@
 {
 	"ping": {
 		"name": "ping",
-		"description": "Pinge den Bot"
+		"description": "Pinge den Bot",
+		"title": "Pong!",
+		"response": "{{latency, number}}ms."
 	},
 	"info": {
 		"name": "info",
@@ -41,7 +43,7 @@
 				"ActiveDeveloper": "Aktiver Entwickler"
 			},
 			"created": "**Erstellt am**: {{- date }} ({{- relative}})",
-			"avatar": "**Avatar**: ",
+			"avatar": "**Profilbild**: ",
 			"server": "Server",
 			"joined": "**Beigetreten am**: {{- date}} ({{- relative}})",
 			"unknown": "Unbekannt",
@@ -51,5 +53,9 @@
 			"hoistRole": "**Hoist Rolle**: <@&{{role}}>",
 			"serverAvatar": "**Server Avatar**: "
 		}
+	},
+	"urban": {
+		"name": "",
+		"description": ""
 	}
 }
