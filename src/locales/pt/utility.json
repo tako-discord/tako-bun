@@ -1,0 +1,44 @@
+{
+	"changeLanguage": {
+		"name": "",
+		"description": "",
+		"personal": {
+			"name": "",
+			"description": ""
+		},
+		"server": {
+			"name": "",
+			"description": ""
+		},
+		"options": {
+			"language": {
+				"name": "",
+				"description": ""
+			}
+		},
+		"response": ""
+	},
+	"stickyMessages": {
+		"name": "",
+		"description": "",
+		"set": {
+			"name": "",
+			"description": "",
+			"options": {
+				"channel": {
+					"name": "",
+					"description": ""
+				},
+				"embed": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"modal": {
+				"title": "",
+				"label": "",
+				"placeholder": ""
+			}
+		}
+	}
+}

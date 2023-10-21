@@ -1,0 +1,18 @@
+{
+	"checks": {
+		"devOnly": {
+			"title": "",
+			"description": ""
+		}
+	},
+	"language": {
+		"invalidLanguage": {
+			"title": "",
+			"description": ""
+		}
+	},
+	"serverRequired": {
+		"title": "",
+		"description": ""
+	}
+}
