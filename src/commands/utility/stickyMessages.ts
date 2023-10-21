@@ -77,6 +77,7 @@ export default {
 	async modalSubmit(interaction) {
 		if (interaction.customId === i18next.t('stickyMessages.name', { ns: 'utility' })) {
 			const message = interaction.fields.getTextInputValue('stickyMessage-message');
+			const language = await getLanguage(interaction.guildId, interaction.user.id);
 			if (message && channel && embed) {
 				await prisma.channel.upsert({
 					where: { id: channel.id },
@@ -87,7 +88,7 @@ export default {
 				const response = createEmbed({
 					color: config.colors.green,
 					emoji: config.emojis.success,
-					title: i18next.t('stickyMessages.set.modal.response', { ns: 'utility', channel: `<#${channel.id}>` }),
+					title: i18next.t('stickyMessages.set.modal.response', { ns: 'utility', channel: `<#${channel.id}>`, lng: language }),
 				});
 
 				await interaction.reply({ embeds: [response], ephemeral: true });

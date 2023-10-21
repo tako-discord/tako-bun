@@ -14,8 +14,8 @@ const config = {
 	},
 	emojis: {
 		ping: '🏓',
-		success: '<:checkmark:1132619990131015721>',
-		error: '<:cross:1132619992949604463>',
+		success: '<:checkmark:1165419676285800498>',
+		error: '<:cross:1165419679133737030>',
 		pagination: {
 			first: '⏮️',
 			previous: '◀️',
