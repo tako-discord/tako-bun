@@ -1,4 +1,4 @@
-import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction, AutocompleteInteraction } from 'discord.js';
+import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction, AutocompleteInteraction, ModalSubmitInteraction } from 'discord.js';
 import type { StructurePredicate } from '../util/loaders.ts';
 
 /**
@@ -21,6 +21,12 @@ export type Command = {
 	 * @param interaction - The interaction of the command
 	 */
 	execute(interaction: CommandInteraction): Promise<void> | void;
+	/**
+	 * The function to execute when a modal is submitted
+	 *
+	 * @param interaction - The interaction of the command
+	 */
+	modalSubmit?(interaction: ModalSubmitInteraction): Promise<void> | void;
 };
 
 // Defines the predicate to check if an object is a valid Command type

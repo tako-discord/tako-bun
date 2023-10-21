@@ -26,6 +26,16 @@ export function registerEvents(client: Client, commands?: Map<string, Command>, 
 
 					await command.autocomplete(interaction);
 				}
+
+				if (interaction.isModalSubmit()) {
+					const command = commands.get(interaction.customId);
+
+					if (!command?.modalSubmit) {
+						throw new Error(`Command '${interaction.customId}' not found.`);
+					}
+
+					await command.modalSubmit(interaction);
+				}
 			},
 		};
 

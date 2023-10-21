@@ -1,4 +1,4 @@
-import type { ChatInputCommandInteraction, ModalActionRowComponentBuilder } from 'discord.js';
+import type { ChatInputCommandInteraction, ModalActionRowComponentBuilder, TextBasedChannel } from 'discord.js';
 import {
 	ActionRowBuilder,
 	ModalBuilder,
@@ -7,9 +7,14 @@ import {
 	TextInputBuilder,
 	TextInputStyle,
 } from 'discord.js';
+import config from '../../../config.ts';
+import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
-import { getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import { createEmbed, getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import type { Command } from '../index.ts';
+
+let embed = false;
+let channel: TextBasedChannel | null = null;
 
 export default {
 	data: new SlashCommandBuilder()
@@ -46,13 +51,13 @@ export default {
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		if (interaction.options.getSubcommand() === 'set') {
-			const channel = interaction.options.getChannel('channel') ?? interaction.channel;
 			const language = await getLanguage(interaction.guildId, interaction.user.id);
-			const embed = interaction.options.getBoolean('embed') ?? false;
+			channel = interaction.options.getChannel('channel') ?? interaction.channel;
+			embed = interaction.options.getBoolean('embed') ?? false;
 			const maxLength = embed ? 4_000 : 2_000;
 
 			const modal = new ModalBuilder()
-				.setCustomId('stickyMessage')
+				.setCustomId(i18next.t('stickyMessages.name', { ns: 'utility' }))
 				.setTitle(i18next.t('stickyMessages.set.modal.title', { ns: 'utility', lng: language }));
 
 			const message = new TextInputBuilder()
@@ -67,6 +72,26 @@ export default {
 			modal.addComponents(new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(message));
 
 			await interaction.showModal(modal);
+		}
+	},
+	async modalSubmit(interaction) {
+		if (interaction.customId === i18next.t('stickyMessages.name', { ns: 'utility' })) {
+			const message = interaction.fields.getTextInputValue('stickyMessage-message');
+			if (message && channel && embed) {
+				await prisma.channel.upsert({
+					where: { id: channel.id },
+					update: { sticky_embed: embed },
+					create: { id: channel.id, sticky_embed: embed },
+				});
+
+				const response = createEmbed({
+					color: config.colors.green,
+					emoji: config.emojis.success,
+					title: i18next.t('stickyMessages.set.modal.response', { ns: 'utility', channel: `<#${channel.id}>` }),
+				});
+
+				await interaction.reply({ embeds: [response], ephemeral: true });
+			}
 		}
 	},
 } satisfies Command;
