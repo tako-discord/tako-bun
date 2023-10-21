@@ -56,6 +56,20 @@
 	},
 	"urban": {
 		"name": "",
-		"description": ""
+		"description": "",
+		"options": {
+			"term": {
+				"name": "",
+				"description": ""
+			},
+			"strict": {
+				"name": "",
+				"description": ""
+			},
+			"matchCase": {
+				"name": "",
+				"description": ""
+			}
+		}
 	}
 }

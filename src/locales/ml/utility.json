@@ -37,7 +37,8 @@
 			"modal": {
 				"title": "",
 				"label": "",
-				"placeholder": ""
+				"placeholder": "",
+				"response": ""
 			}
 		}
 	}
