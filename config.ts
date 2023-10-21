@@ -23,6 +23,9 @@ const config = {
 			last: '⏭️',
 		},
 	} as const,
+	apis: {
+		urban: 'https://unofficialurbandictionaryapi.com/api',
+	},
 };
 
 export default config;

@@ -56,6 +56,20 @@
 	},
 	"urban": {
 		"name": "urban-dictionary",
-		"description": "Search the Urban Dictionary"
+		"description": "Search the Urban Dictionary",
+		"options": {
+			"term": {
+				"name": "term",
+				"description": "The term to search for"
+			},
+			"strict": {
+				"name": "strict",
+				"description": "Whether to use strict mode or not"
+			},
+			"matchCase": {
+				"name": "match-case",
+				"description": "Whether the results need to match the casing of the term"
+			}
+		}
 	}
 }
