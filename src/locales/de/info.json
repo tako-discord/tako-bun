@@ -55,7 +55,21 @@
 		}
 	},
 	"urban": {
-		"name": "",
-		"description": ""
+		"name": "urban-dictionary",
+		"description": "Suche im Urban Dictionary",
+		"options": {
+			"term": {
+				"name": "begriff",
+				"description": "Der Begriff, nach dem gesucht werden soll"
+			},
+			"strict": {
+				"name": "streng",
+				"description": "Ob der strenge Modus verwendet werden soll oder nicht"
+			},
+			"matchCase": {
+				"name": "match-case",
+				"description": "Ob die Ergebnisse mit der Groß- und Kleinschreibung des Begriffs übereinstimmen müssen"
+			}
+		}
 	}
 }

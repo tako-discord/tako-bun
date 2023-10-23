@@ -1,43 +1,44 @@
 {
 	"changeLanguage": {
-		"name": "",
-		"description": "",
+		"name": "സെറ്റ്-ഭാഷ",
+		"description": "ബോട്ടിന്റെ ഭാഷ മാറ്റുക",
 		"personal": {
-			"name": "",
-			"description": ""
+			"name": "വ്യക്തിപരം",
+			"description": "നിങ്ങൾക്കും വ്യക്തിഗത സന്ദേശങ്ങൾക്കും ബോട്ടിന്റെ ഭാഷ മാറ്റുക"
 		},
 		"server": {
-			"name": "",
-			"description": ""
+			"name": "സെർവർ",
+			"description": "മുഴുവൻ സെർവറിനുമായി ബോട്ടിന്റെ ഭാഷ മാറ്റുക"
 		},
 		"options": {
 			"language": {
-				"name": "",
-				"description": ""
+				"name": "ഭാഷ",
+				"description": "ബോട്ടിനായി നിങ്ങൾ ഉപയോഗിക്കാൻ ആഗ്രഹിക്കുന്ന ഭാഷ"
 			}
 		},
-		"response": ""
+		"response": "ഭാഷ `{{language}}` എന്നതിലേക്ക് മാറ്റി"
 	},
 	"stickyMessages": {
-		"name": "",
-		"description": "",
+		"name": "സ്ഥിരമായ-സന്ദേശം",
+		"description": "ഒരു ചാനലിന്റെ ചുവടെ ഒരു സന്ദേശം പ്രദർശിപ്പിക്കാൻ സ്ഥിരമായ സന്ദേശങ്ങൾ നിങ്ങളെ അനുവദിക്കുന്നു",
 		"set": {
-			"name": "",
-			"description": "",
+			"name": "സെറ്റ്",
+			"description": "സ്ഥിരമായ സന്ദേശം സജ്ജമാക്കുക",
 			"options": {
 				"channel": {
-					"name": "",
-					"description": ""
+					"name": "ചാനൽ",
+					"description": "സ്ഥിരമായ സന്ദേശം സജ്ജീകരിക്കാനുള്ള ചാനൽ"
 				},
 				"embed": {
-					"name": "",
-					"description": ""
+					"name": "ഉൾച്ചേർക്കുക",
+					"description": "സന്ദേശം ഒരു എംബഡ് ആയി അയക്കണോ വേണ്ടയോ എന്ന്"
 				}
 			},
 			"modal": {
-				"title": "",
-				"label": "",
-				"placeholder": ""
+				"title": "സ്ഥിരമായ സന്ദേശങ്ങൾ",
+				"label": "സന്ദേശം",
+				"placeholder": "നിങ്ങളുടെ സന്ദേശം ഇവിടെ നൽകുക. ഇത് എല്ലായ്പ്പോഴും ചാനലിന്റെ ചുവടെ പ്രദർശിപ്പിക്കും.",
+				"response": "{{-channel}} എന്നതിനായി സ്റ്റിക്കി സന്ദേശം സജ്ജീകരിച്ചു!"
 			}
 		}
 	}
