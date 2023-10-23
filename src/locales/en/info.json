@@ -69,7 +69,15 @@
 			"matchCase": {
 				"name": "match-case",
 				"description": "Whether the results need to match the casing of the term"
+			},
+			"ephemeral": {
+				"name": "ephemeral",
+				"description": "Whether to send the response as an ephemeral message (only visible to you)"
 			}
-		}
+		},
+		"error": "An error occured while searching the Urban Dictionary for `{{term}}`",
+		"error_404": "No results found for `{{term}}`",
+		"example": "Example",
+		"footer": "unofficialurbandictionaryapi.com • {{- date, datetime}}"
 	}
 }

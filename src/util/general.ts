@@ -5,7 +5,7 @@ import type { EmbedOptions } from '../@types/general';
 import prisma from '../database.ts';
 import i18next from '../i18n.ts';
 
-export function createEmbed({ color = 'primary', description, emoji, fields, image, thumbnail, title }: EmbedOptions) {
+export function createEmbed({ author, color = 'primary', description, emoji, fields, footer, image, thumbnail, timestamp, title }: EmbedOptions) {
 	const embed = new EmbedBuilder()
 		.setColor(typeof color === 'string' ? config.colors[color] : color)
 		.setTitle(`${emoji ? emoji + ' ' : ''}${title}`);
@@ -14,6 +14,9 @@ export function createEmbed({ color = 'primary', description, emoji, fields, ima
 	if (fields) embed.setFields(fields);
 	if (thumbnail) embed.setThumbnail(thumbnail);
 	if (image) embed.setImage(image);
+	if (timestamp) embed.setTimestamp(timestamp);
+	if (footer) embed.setFooter(footer);
+	if (author) embed.setAuthor(author);
 
 	return embed;
 }
@@ -40,14 +43,16 @@ export async function getColor(guildId: string | null, userId?: string, client?:
 	return color;
 }
 
-export async function getLanguage(guildId: string | null, userId?: string) {
+export async function getLanguage(guildId: string | null, userId?: string, prioritizeGuild = false) {
 	let language = 'en';
+	let guildAvailable = false;
 	if (guildId) {
 		const guild = await prisma.guild.findFirst({ where: { id: guildId } });
 		if (guild?.language) language = guild.language;
+		if (guild?.language && prioritizeGuild) guildAvailable = true;
 	}
 
-	if (userId) {
+	if (userId && !guildAvailable) {
 		const user = await prisma.user.findFirst({ where: { id: userId } });
 		if (user?.language) language = user.language;
 	}

@@ -1,8 +1,9 @@
+import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
 import type { UrbanDictionaryResponse } from '../../@types/info.d.ts';
 import i18next from '../../i18n.ts';
-import { getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import { createEmbed, getColor, getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 export default {
@@ -34,9 +35,65 @@ export default {
 				.setDescription(i18next.t('urban.options.matchCase.description', { ns: 'info' }))
 				.setDescriptionLocalizations(slashCommandTranslator('urban.options.matchCase.description', 'info')),
 		)
+		.addBooleanOption((option) =>
+			option
+				.setName(i18next.t('urban.options.ephemeral.name', { ns: 'info' }))
+				.setNameLocalizations(slashCommandTranslator('urban.options.ephemeral.name', 'info'))
+				.setDescription(i18next.t('urban.options.ephemeral.description', { ns: 'info' }))
+				.setDescriptionLocalizations(slashCommandTranslator('urban.options.ephemeral.description', 'info')),
+		)
 		.toJSON(),
-	async execute(interaction) {
-		await interaction.reply({ content: 'Not implemented yet' });
+	async execute(interaction: ChatInputCommandInteraction) {
+		let term = interaction.options.getString('term', true);
+		let strict = interaction.options.getBoolean('strict') ?? false;
+		let matchCase = interaction.options.getBoolean('matchCase') ?? false;
+		const ephemeral = interaction.options.getBoolean('ephemeral') ?? false;
+		await interaction.deferReply({ ephemeral })
+		const lng = await getLanguage(interaction.guildId, interaction.user.id, true);
+		let index = 0;
+		if (term.includes(' urbanApiDataIndex=')) {
+			const splitted = term.split(' urbanApiDataIndex=');
+			index = Number(splitted[1]);
+			term = splitted[0];
+			strict = false;
+			matchCase = false;
+		}
+
+		const url = `${config.apis.urban}/search?term=${encodeURIComponent(term)}&limit=${
+			index + 1
+		}&strict=${strict}&matchCase=${matchCase}`;
+
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+		});
+		let body: UrbanDictionaryResponse | null = null;
+		try {
+			body = await response.json();
+		} catch {}
+
+		if (!body) {
+			await interaction.editReply({ content: i18next.t('urban.error', { ns: 'info', lng, term }) });
+			return;
+		}
+
+		if (body.statusCode !== 200) {
+			await interaction.editReply({
+				content: i18next.t('urban.error', { ns: 'info', context: body.statusCode.toString(), lng, term }),
+			});
+			return;
+		}
+
+		const embed = createEmbed({
+			author: { name: body.data[index].contributor.slice(0, 256), url: `https://www.urbandictionary.com/author.php?author=${encodeURIComponent(body.data[index].contributor)}` },
+			color: await getColor(interaction.guildId),
+			title: body.data[index].word.slice(0, 256),
+			description: body.data[index].meaning.slice(0, 4_096),
+			fields: [{ name: i18next.t('urban.example', { ns: 'info', lng }), value: body.data[index].example.slice(0, 1_024) }],
+			footer: { text: i18next.t('urban.footer', { ns: 'info', lng, date: new Date(body.data[index].date) }) },
+		});
+
+		await interaction.editReply({ embeds: [embed] });
 	},
 	async autocomplete(interaction) {
 		const term = interaction.options.getFocused();
