@@ -69,7 +69,15 @@
 			"matchCase": {
 				"name": "",
 				"description": ""
+			},
+			"ephemeral": {
+				"name": "",
+				"description": ""
 			}
-		}
+		},
+		"error": "",
+		"error_404": "",
+		"example": "",
+		"footer": ""
 	}
 }

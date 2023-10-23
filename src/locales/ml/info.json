@@ -69,7 +69,15 @@
 			"matchCase": {
 				"name": "പൊരുത്തം-കേസ്",
 				"description": "ഫലങ്ങൾ പദത്തിന്റെ കേസിംഗുമായി പൊരുത്തപ്പെടേണ്ടതുണ്ടോ എന്ന്"
+			},
+			"ephemeral": {
+				"name": "",
+				"description": ""
 			}
-		}
+		},
+		"error": "",
+		"error_404": "",
+		"example": "",
+		"footer": ""
 	}
 }
