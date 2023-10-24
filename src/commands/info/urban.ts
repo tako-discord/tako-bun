@@ -1,7 +1,7 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
-import type { UrbanDictionaryResponse } from '../../@types/info.d.ts';
+import type { UrbanDictionaryResponse } from '../../@types/apis';
 import i18next from '../../i18n.ts';
 import { createEmbed, getColor, getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import type { Command } from '../index.ts';

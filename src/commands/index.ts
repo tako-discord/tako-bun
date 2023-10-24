@@ -1,4 +1,4 @@
-import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction, AutocompleteInteraction, ModalSubmitInteraction } from 'discord.js';
+import type { RESTPostAPIApplicationCommandsJSONBody, CommandInteraction, AutocompleteInteraction, ModalSubmitInteraction, ContextMenuCommandInteraction, MessageContextMenuCommandInteraction } from 'discord.js';
 import type { StructurePredicate } from '../util/loaders.ts';
 
 /**

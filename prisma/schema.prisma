@@ -17,6 +17,7 @@ model User {
   color      Int?
   background String?
   license    String?
+  quickTranslateTooltip Boolean @default(true)
 }
 
 enum ReplyStyle {
@@ -38,6 +39,6 @@ model Guild {
 
 model Channel {
   id             String  @id @unique
-  sticky_message String?
-  sticky_embed   Boolean @default(false)
+  stickyMessage String?
+  stickyEmbed   Boolean @default(false)
 }

@@ -7,7 +7,7 @@ export function registerEvents(client: Client, commands?: Map<string, Command>, 
 		const interactionCreateEvent: Event<Events.InteractionCreate> = {
 			name: Events.InteractionCreate,
 			async execute(interaction) {
-				if (interaction.isCommand()) {
+				if (interaction.isCommand() || interaction.isContextMenuCommand()) {
 					const command = commands.get(interaction.commandName);
 
 					if (!command) {

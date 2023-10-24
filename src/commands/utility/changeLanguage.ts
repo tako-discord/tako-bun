@@ -105,7 +105,6 @@ export default {
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		const subcommand = interaction.options.getSubcommand();
-		console.log(subcommand);
 		const language =
 			interaction.options.getString(i18next.t('changeLanguage.options.language.name', { ns: 'utility' })) ?? 'en';
 		const responseLanguage = await getLanguage(

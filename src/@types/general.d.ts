@@ -11,9 +11,9 @@ export type EmbedOptions = {
 	description?: string;
 	emoji?: (typeof config.emojis.pagination)[paginationEmojis] | (typeof config.emojis)[baseEmojis];
 	fields?: APIEmbedField[];
-	footer?: EmbedFooterOptions;
+	footer?: EmbedFooterOptions | null | undefined;
 	image?: string | null;
 	thumbnail?: string;
 	timestamp?: Date | number | null | undefined;
-	title: string;
+	title?: string;
 };

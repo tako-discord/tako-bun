@@ -1,15 +1,28 @@
+import { setTimeout } from 'node:timers';
 import type { Client } from 'discord.js';
 import { EmbedBuilder, Locale } from 'discord.js';
 import config from '../../config.ts';
+import type { LingvaTranslateResponse, DeeplTargetLanguageCode } from '../@types/apis';
+import { DeeplTargetLanguageCodes } from '../@types/apis';
 import type { EmbedOptions } from '../@types/general';
 import prisma from '../database.ts';
 import i18next from '../i18n.ts';
 
-export function createEmbed({ author, color = 'primary', description, emoji, fields, footer, image, thumbnail, timestamp, title }: EmbedOptions) {
-	const embed = new EmbedBuilder()
-		.setColor(typeof color === 'string' ? config.colors[color] : color)
-		.setTitle(`${emoji ? emoji + ' ' : ''}${title}`);
+export function createEmbed({
+	author,
+	color = 'primary',
+	description,
+	emoji,
+	fields,
+	footer,
+	image,
+	thumbnail,
+	timestamp,
+	title,
+}: EmbedOptions) {
+	const embed = new EmbedBuilder().setColor(typeof color === 'string' ? config.colors[color] : color);
 
+	if (title) embed.setTitle(title);
 	if (description) embed.setDescription(description);
 	if (fields) embed.setFields(fields);
 	if (thumbnail) embed.setThumbnail(thumbnail);
@@ -74,4 +87,60 @@ export function slashCommandTranslator(key: string, ns: string) {
 export async function getBanner(userId: string) {
 	const user = await prisma.user.findFirst({ where: { id: userId } });
 	return user?.background;
+}
+
+export async function translate(message: string, target: string, source: string = 'auto') {
+	let translation = message;
+	const timeout = 3_000;
+	const timeoutPromise = new Promise<Response>((resolve) => {
+		setTimeout(resolve, timeout);
+	});
+	const response = await Promise.race([
+		fetch(config.apis.lingva + `/${source}/${target}/${encodeURIComponent(message)}`),
+		timeoutPromise,
+	]);
+	let detected = null;
+
+	let lingva: LingvaTranslateResponse | null = null;
+	if (response && response.status === 200) {
+		try {
+			lingva = await response.json();
+			translation = lingva?.translation ?? message;
+		} catch {}
+	}
+
+	if (lingva?.info?.detectedSource) {
+		detected = lingva.info.detectedSource;
+	}
+
+	if (
+		!detected ||
+		(DeeplTargetLanguageCodes.includes(detected.toLowerCase() as DeeplTargetLanguageCode) &&
+			DeeplTargetLanguageCodes.includes(target.toLowerCase() as DeeplTargetLanguageCode))
+	) {
+		const key = Bun.env.DEEPL_API_KEY;
+		if (key) {
+			const url = (key.endsWith(':fx') ? config.apis.deepl.free : config.apis.deepl.pro) + '/translate';
+			const response = await fetch(url, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', Authorization: `DeepL-Auth-Key ${key}` },
+				body: JSON.stringify({
+					text: [message],
+					target_lang: target,
+					source_lang: source === 'auto' ? null : source.split('-')[0],
+				}),
+			});
+
+			let deepl = null;
+			if (response.status === 200) {
+				try {
+					deepl = await response.json();
+				} catch {}
+			}
+
+			translation = deepl.translations[0].text ?? lingva?.translation ?? message;
+		}
+	}
+
+	return translation;
 }

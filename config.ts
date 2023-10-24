@@ -25,6 +25,11 @@ const config = {
 	} as const,
 	apis: {
 		urban: 'https://unofficialurbandictionaryapi.com/api',
+		lingva: 'https://tl.tako-bot.com/api/v1',
+		deepl: {
+			free: 'https://api-free.deepl.com/v2',
+			pro: 'https://api.deepl.com/v2',
+		}
 	},
 };
 

@@ -81,8 +81,8 @@ export default {
 			if (message && channel && embed) {
 				await prisma.channel.upsert({
 					where: { id: channel.id },
-					update: { sticky_embed: embed },
-					create: { id: channel.id, sticky_embed: embed },
+					update: { stickyEmbed: embed },
+					create: { id: channel.id, stickyEmbed: embed },
 				});
 
 				const response = createEmbed({
