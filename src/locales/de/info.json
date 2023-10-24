@@ -69,7 +69,15 @@
 			"matchCase": {
 				"name": "match-case",
 				"description": "Ob die Ergebnisse mit der Groß- und Kleinschreibung des Begriffs übereinstimmen müssen"
+			},
+			"ephemeral": {
+				"name": "",
+				"description": ""
 			}
-		}
+		},
+		"error": "",
+		"error_404": "",
+		"example": "",
+		"footer": ""
 	}
 }
