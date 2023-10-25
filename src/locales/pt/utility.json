@@ -41,5 +41,10 @@
 				"response": ""
 			}
 		}
+	},
+	"quickTranslate": {
+		"name": "",
+		"tooltip": "",
+		"noContent": ""
 	}
 }

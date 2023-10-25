@@ -41,5 +41,10 @@
 				"response": "{{-channel}} എന്നതിനായി സ്റ്റിക്കി സന്ദേശം സജ്ജീകരിച്ചു!"
 			}
 		}
+	},
+	"quickTranslate": {
+		"name": "",
+		"tooltip": "",
+		"noContent": ""
 	}
 }
