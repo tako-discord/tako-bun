@@ -1,83 +1,83 @@
 {
 	"ping": {
-		"name": "",
-		"description": "",
-		"title": "",
-		"response": ""
+		"name": "ping",
+		"description": "Pingaj bota",
+		"title": "Pong!",
+		"response": "{latency, number}ms."
 	},
 	"info": {
-		"name": "",
-		"description": "",
+		"name": "informacije",
+		"description": "Dobij informacije o bilo čemu",
 		"user": {
-			"name": "",
-			"description": "",
+			"name": "korisnik",
+			"description": "Dobij informacije o korisniku ili sebi",
 			"options": {
 				"user": {
-					"name": "",
-					"description": ""
+					"name": "korisnik",
+					"description": "Korisnik od kojeg se dobivaju informacije"
 				}
 			},
-			"title": "",
-			"embedDescription": "",
-			"general": "",
-			"username": "",
-			"id": "",
-			"flags": "",
-			"noFlags": "",
+			"title": "Info za {{user}}",
+			"embedDescription": "Evo nekih informacija o <@{{user}}>",
+			"general": "Općenito",
+			"username": "**Korisničko ime**: {{username}}",
+			"id": "**ID**: {{id}}",
+			"flags": "**Oznake**: {{- flags}}",
+			"noFlags": "*Bez oznaka*",
 			"flag": {
-				"Staff": "",
-				"Partner": "",
-				"HypeSquad": "",
-				"BugHunterLevel1": "",
-				"HypeSquadOnlineHouse1": "",
-				"HypeSquadOnlineHouse2": "",
-				"HypeSquadOnlineHouse3": "",
-				"PremiumEarlySupporter": "",
-				"TeamUser": "",
-				"BugHunterLevel2": "",
-				"VerifiedBot": "",
-				"VerifiedDeveloper": "",
-				"CertifiedModerator": "",
-				"BotHTTPInteractions": "",
-				"Spammer": "",
-				"ActiveDeveloper": ""
+				"Staff": "Discord osoblje",
+				"Partner": "Vlasnik partnerskog servera",
+				"HypeSquad": "HypeSquad događanja",
+				"BugHunterLevel1": "Discord Bug Hunter",
+				"HypeSquadOnlineHouse1": "HypeSquad kuća hrabrosti",
+				"HypeSquadOnlineHouse2": "HypeSquad kuća brilijantnosti",
+				"HypeSquadOnlineHouse3": "HypeSquad kuća ravnoteže",
+				"PremiumEarlySupporter": "Rani podržavatelj",
+				"TeamUser": "Tim",
+				"BugHunterLevel2": "Discord Bug Hunter",
+				"VerifiedBot": "Verificirani bot",
+				"VerifiedDeveloper": "Rani verificirani programer botova",
+				"CertifiedModerator": "Alumni programa moderatora",
+				"BotHTTPInteractions": "Bot koristi samo HTTP interakcije",
+				"Spammer": "Spamer",
+				"ActiveDeveloper": "Aktivni developer"
 			},
-			"created": "",
-			"avatar": "",
-			"server": "",
-			"joined": "",
-			"unknown": "",
-			"roles": "",
-			"noRoles": "",
-			"topRole": "",
-			"hoistRole": "",
-			"serverAvatar": ""
+			"created": "**Stvoreno**: {{- date }} ({{- relative}})",
+			"avatar": "**Avatar**: ",
+			"server": "Server",
+			"joined": "**Pridružio se**: {{- date}} ({{- relative}})",
+			"unknown": "Nepoznato",
+			"roles": "**Uloge**: {{- roles}}",
+			"noRoles": "*Bez uloga*",
+			"topRole": "**Najviša uloga**: <@&{{role}}>",
+			"hoistRole": "**Vidljiva uloga**: <@&{{role}}>",
+			"serverAvatar": "**Server Avatar**: "
 		}
 	},
 	"urban": {
-		"name": "",
-		"description": "",
+		"name": "urban-dictionary",
+		"description": "Pretraži Urban Dictionary",
 		"options": {
 			"term": {
-				"name": "",
-				"description": ""
+				"name": "pojam",
+				"description": "Pojam za tražiti"
 			},
 			"strict": {
-				"name": "",
-				"description": ""
+				"name": "strogo",
+				"description": "Treba li koristiti strogi način rada ili ne"
 			},
 			"matchCase": {
-				"name": "",
-				"description": ""
+				"name": "match-case",
+				"description": "Trebaju li rezultati odgovarati malim i malim slovima izraza"
 			},
 			"ephemeral": {
-				"name": "",
-				"description": ""
+				"name": "efemeran",
+				"description": "Treba li poslati odgovor kao efemernu poruku (vidljivu samo tebi)"
 			}
 		},
 		"error": "",
-		"error_404": "",
-		"example": "",
-		"footer": ""
+		"error_404": "Nema pronađenih rezultata za `{{term}}`",
+		"example": "Primjer",
+		"footer": "unofficialurbandictionaryapi.com • {{- date, datetime}}"
 	}
 }
