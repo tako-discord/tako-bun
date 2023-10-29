@@ -75,7 +75,7 @@
 				"description": "Ob die Antwort als vergängliche Nachricht gesendet werden soll (nur für dich sichtbar)"
 			}
 		},
-		"error": "Bei der Suche im Urban Dictionary nach `{{term}}` ist ein Fehler aufgetreten",
+		"error": "",
 		"error_404": "Es wurden keine Ergebnisse gefunden für `{{term}}`",
 		"example": "Beispiel",
 		"footer": "unofficialurbandictionaryapi.com • {{- date, datetime}}"
