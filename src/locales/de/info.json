@@ -71,13 +71,13 @@
 				"description": "Ob die Ergebnisse mit der Groß- und Kleinschreibung des Begriffs übereinstimmen müssen"
 			},
 			"ephemeral": {
-				"name": "",
-				"description": ""
+				"name": "vergänglich",
+				"description": "Ob die Antwort als vergängliche Nachricht gesendet werden soll (nur für dich sichtbar)"
 			}
 		},
-		"error": "",
-		"error_404": "",
-		"example": "",
-		"footer": ""
+		"error": "Bei der Suche im Urban Dictionary nach `{{term}}` ist ein Fehler aufgetreten",
+		"error_404": "Es wurden keine Ergebnisse gefunden für `{{term}}`",
+		"example": "Beispiel",
+		"footer": "unofficialurbandictionaryapi.com • {{- date, datetime}}"
 	}
 }

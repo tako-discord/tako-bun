@@ -41,5 +41,10 @@
 				"response": "Erfolgreich die haftende Nachricht für {{-channel}} gesetzt!"
 			}
 		}
+	},
+	"quickTranslate": {
+		"name": "",
+		"tooltip": "",
+		"noContent": ""
 	}
 }
