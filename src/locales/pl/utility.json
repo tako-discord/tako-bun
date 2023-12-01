@@ -46,5 +46,37 @@
 		"name": "",
 		"tooltip": "",
 		"noContent": ""
+	},
+	"feedback": {
+		"name": "",
+		"description": "",
+		"options": {
+			"priority": {
+				"name": "",
+				"description": "",
+				"choices": {
+					"none": "",
+					"low": "",
+					"normal": "",
+					"high": "",
+					"urgent": ""
+				}
+			}
+		},
+		"modal": {
+			"title": "",
+			"response": "",
+			"error": "",
+			"feedbackTitle": {
+				"id": "",
+				"label": "",
+				"placeholder": ""
+			},
+			"message": {
+				"id": "",
+				"label": "",
+				"placeholder": ""
+			}
+		}
 	}
 }

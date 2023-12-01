@@ -43,8 +43,40 @@
 		}
 	},
 	"quickTranslate": {
-		"name": "",
-		"tooltip": "",
-		"noContent": ""
+		"name": "Schnell übersetzen",
+		"tooltip": "Willst du die Sprache ändern? Verwende \"{{- command}}\"!",
+		"noContent": "Die Nachricht ist entweder leer oder nur eine Embed. Bitte gib beim nächsten Mal eine Nachricht mit gültigem Inhalt ein!"
+	},
+	"feedback": {
+		"name": "feedback",
+		"description": "Sende Feedback an die Entwickler",
+		"options": {
+			"priority": {
+				"name": "priorität",
+				"description": "Die Priorität deines Feedbacks",
+				"choices": {
+					"none": "Keine",
+					"low": "Niedrig",
+					"normal": "Normal",
+					"high": "Hoch",
+					"urgent": "Dringend"
+				}
+			}
+		},
+		"modal": {
+			"title": "Feedback",
+			"response": "Dein Feedback wurde erfolgreich an die Entwickler von {{client}} gesendet!",
+			"error": "Beim Senden deines Feedbacks ist ein Fehler aufgetreten. Bitte versuche es später noch einmal. Wenn dieser Fehler jedoch weiterhin besteht, kontaktiere bitte die Entwickler über ihren [Support-Server](<{{supportServer}}>).",
+			"feedbackTitle": {
+				"id": "feedbackTitle",
+				"label": "Titel",
+				"placeholder": "Gib hier einen Titel für dein Feedback ein. Das hilft uns, dein Feedback zu kategorisieren."
+			},
+			"message": {
+				"id": "feedbackMessage",
+				"label": "Deine Nachricht",
+				"placeholder": "Gebe hier dein Feedback ein"
+			}
+		}
 	}
 }
