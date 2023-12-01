@@ -46,5 +46,37 @@
 		"name": "Quick Translate",
 		"tooltip": "Wanna change the language? Use \"{{- command}}\"!",
 		"noContent": "The message is either empty or just an embed. Please provide a message with valid content next time!"
+	},
+	"feedback": {
+		"name": "feedback",
+		"description": "Send feedback to the developers",
+		"options": {
+			"priority": {
+				"name": "priority",
+				"description": "The priority of your feedback",
+				"choices": {
+					"none": "None",
+					"low": "Low",
+					"normal": "Normal",
+					"high": "High",
+					"urgent": "Urgent"
+				}
+			}
+		},
+		"modal": {
+			"title": "Feedback",
+			"response": "Successfully sent your feedback to the developers of {{client}}!",
+			"error": "An error occurred while sending your feedback. Please try again later. If this error persists, please contact the developers via their [support server](<{{supportServer}}>).",
+			"feedbackTitle": {
+				"id": "feedbackTitle",
+				"label": "Title",
+				"placeholder": "Enter a title for your feedback here. This will help us to categorize your feedback."
+			},
+			"message": {
+				"id": "feedbackMessage",
+				"label": "Your Message",
+				"placeholder": "Enter your feedback here"
+			}
+		}
 	}
 }
