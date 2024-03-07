@@ -22,8 +22,18 @@ export function createEmbed({
 }: EmbedOptions) {
 	const embed = new EmbedBuilder().setColor(typeof color === 'string' ? config.colors[color] : color);
 
-	if (title) embed.setTitle(title);
-	if (description) embed.setDescription(description);
+	// This is the logic behind using the titles as a description and optionally also adding an emoji.
+	// That will fix the issue of the emoji and title not being vertically aligned.
+	const formattedEmoji = emoji ? '### ' + emoji + ' ' : '';
+	const title_start = emoji ? '' : '### ';
+	const formattedDescription = `${formattedEmoji}${title ? title_start + title + '\n' : ''}${description ?? ''}`;
+
+	// The previous title logic, if we want to revert back to it.
+	//
+	// if (title && emoji) embed.setTitle(`${emoji} ${title}`);
+	// if (title && !emoji) embed.setTitle(title);
+	// if (description) embed.setDescription(description);
+	if (emoji || title || description) embed.setDescription(formattedDescription);
 	if (fields) embed.setFields(fields);
 	if (thumbnail) embed.setThumbnail(thumbnail);
 	if (image) embed.setImage(image);
