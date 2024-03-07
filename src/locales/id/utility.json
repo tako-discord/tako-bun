@@ -45,7 +45,8 @@
 	"quickTranslate": {
 		"name": "",
 		"tooltip": "",
-		"noContent": ""
+		"noContent": "",
+		"original": ""
 	},
 	"feedback": {
 		"name": "",
