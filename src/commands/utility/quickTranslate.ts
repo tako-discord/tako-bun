@@ -1,5 +1,5 @@
 import type { MessageContextMenuCommandInteraction } from 'discord.js';
-import { ApplicationCommandType, ContextMenuCommandBuilder } from 'discord.js';
+import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, ButtonStyle, ContextMenuCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
 import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
@@ -26,7 +26,7 @@ export default {
 			});
 		}
 
-       const command = '/' + i18next.t('changeLanguage.name', { ns: 'utility' }) + ' ' + i18next.t('changeLanguage.personal.name', { ns: 'utility' });
+       const command = '/' + i18next.t('changeLanguage.name', { ns: 'utility', lng }) + ' ' + i18next.t('changeLanguage.personal.name', { ns: 'utility', lng });
 
 		if (!message.content) {
 			const embed = createEmbed({
@@ -39,13 +39,14 @@ export default {
 		}
 
 		const translation = await translate(message.content, lng, 'auto');
+		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(new ButtonBuilder().setURL(message.url).setLabel(i18next.t('quickTranslate.original', { ns: 'utility', lng })).setStyle(ButtonStyle.Link));
 
 		const embed = createEmbed({
-			author: { name: message.author.tag, iconURL: message.author.displayAvatarURL(), url: message.url },
+			author: { name: message.author.tag, iconURL: message.author.displayAvatarURL() },
 			color: await getColor(interaction.guildId, interaction.user.id),
 			description: translation,
 			footer: tooltip ? { text: i18next.t('quickTranslate.tooltip', { ns: 'utility', lng, command }) } : null,
 		});
-		await interaction.editReply({ embeds: [embed] });
+		await interaction.editReply({ embeds: [embed], components: [row]});
 	},
 } satisfies Command;
