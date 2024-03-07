@@ -1,7 +1,7 @@
 import type { Client } from "discord.js";
 import prisma from "../database";
 
-export async function updateCoreDev(name: string, role_id: string, guild_id: string, client: Client) {
+export async function updateRoleBadge(name: string, role_id: string, guild_id: string, client: Client) {
     const guild = await client.guilds.fetch(guild_id);
     const role = await guild.roles.fetch(role_id);
 

@@ -3,7 +3,7 @@ import { URL } from 'node:url';
 import { Client, GatewayIntentBits } from 'discord.js';
 import config from '../config';
 import prisma from './database.ts';
-import { updateCoreDev } from './util/badges.ts';
+import { updateRoleBadge } from './util/badges.ts';
 import { loadCommands, loadEvents } from './util/loaders.ts';
 import { registerEvents } from './util/registerEvents.ts';
 
@@ -24,9 +24,7 @@ client.on('ready', async () => {
 			}
 		});
 
-		if (badge.role && badge.name === 'core_developer') {
-			await updateCoreDev(badge.name, badge.role, guild_id, client)
-		}
+		await updateRoleBadge(badge.name, badge.role, guild_id, client)
 	}
 });
 

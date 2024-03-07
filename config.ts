@@ -1,6 +1,6 @@
 const config = {
 	// With this enabled, the bot will sync all commands only to the dev guild, to prevent rate limiting
-	dev: true,
+	dev: false,
 	guilds: {
 		main: '884046271176912917',
 		dev: '884046271176912917',
@@ -40,10 +40,10 @@ const config = {
 		},
 	},
 	badges: [
-		{ name: "alpha_tester", emoji: '🧪', },
-		{ name: "translator", emoji: '🌐' },
-		{ name: "donator", emoji: '💖' },
-		{ name: "core_developer", emoji:'🛠️', role: '911955855048585218' }
+		{ name: "alpha_tester", emoji: '🧪', role: '969306314981376071' },
+		{ name: "translator", emoji: '🌐', role: '980904580286140426' },
+		{ name: "donator", emoji: '💖', role: '969286409200468028' },
+		{ name: "core_developer", emoji:'🛠️', role: '969285824107642990' }
 	]
 };
 
