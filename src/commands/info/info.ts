@@ -1,10 +1,10 @@
 import { SlashCommandBuilder } from 'discord.js';
+import config from '../../../config.ts';
+import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
 import { createEmbed, getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import { userInfo } from '../../util/info.ts';
 import type { Command } from '../index.ts';
-import prisma from '../../database.ts';
-import config from '../../../config.ts';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -79,7 +79,7 @@ export default {
 				embeds: [
 					createEmbed({
 						title: `${badgeData.emoji} ${i18next.t(`${badgeData.name}.name`, { ns: 'badges', lng })}`,
-						description: i18next.t(`${badgeData.name}.description`, { ns: 'badges', lng }),
+						description: i18next.t(`${badgeData.name}.description`, { ns: 'badges', lng, translationLink: config.links.translate.masked, donationLink: config.links.donate.masked }),
 					})
 				]
 			});

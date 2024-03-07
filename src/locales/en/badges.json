@@ -5,11 +5,11 @@
 	},
 	"translator": {
 		"name": "Translator",
-		"description": "Users who have translated the bot into other languages via {{link}}"
+		"description": "Users who have translated the bot into other languages via {{- translationLink}}"
 	},
 	"donator": {
 		"name": "Donator",
-		"description": "Users who have donated to the bot via {{link}}"
+		"description": "Users who have donated to the bot via {{- donationLink}}"
 	},
 	"core_developer": {
 		"name": "Core Developer",

@@ -116,7 +116,7 @@ export default {
 		const embed = createEmbed({
 			color: config.colors.red,
 			title: i18n.t('feedback.modal.error.title', { ns: 'utility', lng }),
-			description: i18n.t('feedback.modal.error.description', { ns: 'utility', lng, supportServer: config.supportServer }),
+			description: i18n.t('feedback.modal.error.description', { ns: 'utility', lng, supportServer: config.links.support.link }),
 			emoji: config.emojis.error,
 		});
 

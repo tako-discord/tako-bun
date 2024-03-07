@@ -5,7 +5,6 @@ const config = {
 		main: '884046271176912917',
 		dev: '884046271176912917',
 	},
-	supportServer: 'https://discord.gg/vHhE78Fu6v',
 	// These people have access to the secret category (sync etc.)
 	devs: ['751092600890458203', '429303151598895106'],
 	colors: {
@@ -37,6 +36,20 @@ const config = {
 		deepl: {
 			free: 'https://api-free.deepl.com/v2',
 			pro: 'https://api.deepl.com/v2',
+		},
+	},
+	links: {
+		support: {
+			link: 'https://discord.gg/vHhE78Fu6v',
+			masked: '[Support Server](https://discord.gg/vHhE78Fu6v)'
+		},
+		donate: {
+			link: 'https://opencollective.com/tako',
+			masked: '[OpenCollective](https://opencollective.com/tako)'
+		},
+		translate: {
+			link: 'https://translate.tako-bot.com',
+			masked: '[Crowdin](https://translate.tako-bot.com)'
 		},
 	},
 	badges: [
