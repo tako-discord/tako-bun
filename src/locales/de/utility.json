@@ -45,7 +45,8 @@
 	"quickTranslate": {
 		"name": "Schnell übersetzen",
 		"tooltip": "Willst du die Sprache ändern? Verwende \"{{- command}}\"!",
-		"noContent": "Die Nachricht ist entweder leer oder nur eine Embed. Bitte gib beim nächsten Mal eine Nachricht mit gültigem Inhalt ein!"
+		"noContent": "Die Nachricht ist entweder leer oder nur eine Embed. Bitte gib beim nächsten Mal eine Nachricht mit gültigem Inhalt ein!",
+		"original": "Zurück zur ursprünglichen Nachricht"
 	},
 	"feedback": {
 		"name": "feedback",
