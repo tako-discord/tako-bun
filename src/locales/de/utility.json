@@ -65,8 +65,13 @@
 		},
 		"modal": {
 			"title": "Feedback",
-			"response": "Dein Feedback wurde erfolgreich an die Entwickler von {{client}} gesendet!",
-			"error": "Beim Senden deines Feedbacks ist ein Fehler aufgetreten. Bitte versuche es später noch einmal. Wenn dieser Fehler jedoch weiterhin besteht, kontaktiere bitte die Entwickler über ihren [Support-Server](<{{supportServer}}>).",
+			"response": {
+				"title": "Feedback erfolgreich gesendet!"
+			},
+			"error": {
+				"title": "Beim Senden deines Feedbacks ist ein Fehler aufgetreten.",
+				"description": "Bitte versuche es später noch einmal. Wenn dieser Fehler jedoch weiterhin besteht, kontaktiere bitte die Entwickler über ihren [Support-Server](<{{supportServer}}>)."
+			},
 			"feedbackTitle": {
 				"id": "feedbackTitle",
 				"label": "Titel",

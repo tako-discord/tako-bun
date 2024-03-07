@@ -51,7 +51,22 @@
 			"noRoles": "*വേഷങ്ങൾ ഇല്ല*",
 			"topRole": "**ടോപ്പ് റോൾ**: <@&{{role}}>",
 			"hoistRole": "**ഹോസ്റ്റ് റോൾ**: <@&{{role}}>",
-			"serverAvatar": "**സെർവർ അവതാർ**: "
+			"serverAvatar": "**സെർവർ അവതാർ**: ",
+			"badges": ""
+		},
+		"badge": {
+			"name": "",
+			"description": "",
+			"options": {
+				"badge": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"notFound": {
+				"title": "",
+				"description": ""
+			}
 		}
 	},
 	"urban": {

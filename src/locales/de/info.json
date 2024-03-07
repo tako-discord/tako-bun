@@ -51,7 +51,22 @@
 			"noRoles": "*Keine Rollen*",
 			"topRole": "**Höchste Rolle**: <@&{{role}}>",
 			"hoistRole": "**Hoist Rolle**: <@&{{role}}>",
-			"serverAvatar": "**Server Avatar**: "
+			"serverAvatar": "**Server Avatar**: ",
+			"badges": "{{client}} Abzeichen"
+		},
+		"badge": {
+			"name": "abzeichen",
+			"description": "Erhalte Infos über ein Abzeichen",
+			"options": {
+				"badge": {
+					"name": "abzeichen",
+					"description": "Das Abzeichen, über das du Informationen erhalten möchtest"
+				}
+			},
+			"notFound": {
+				"title": "Abzeichen nicht gefunden",
+				"description": "Das Abzeichen `{{badge}}` konnte nicht gefunden werden"
+			}
 		}
 	},
 	"urban": {

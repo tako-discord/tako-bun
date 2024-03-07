@@ -51,7 +51,22 @@
 			"noRoles": "*Bez uloga*",
 			"topRole": "**Najviša uloga**: <@&{{role}}>",
 			"hoistRole": "**Vidljiva uloga**: <@&{{role}}>",
-			"serverAvatar": "**Server Avatar**: "
+			"serverAvatar": "**Server Avatar**: ",
+			"badges": ""
+		},
+		"badge": {
+			"name": "",
+			"description": "",
+			"options": {
+				"badge": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"notFound": {
+				"title": "",
+				"description": ""
+			}
 		}
 	},
 	"urban": {

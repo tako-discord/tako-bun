@@ -65,8 +65,13 @@
 		},
 		"modal": {
 			"title": "",
-			"response": "",
-			"error": "",
+			"response": {
+				"title": ""
+			},
+			"error": {
+				"title": "",
+				"description": ""
+			},
 			"feedbackTitle": {
 				"id": "",
 				"label": "",
