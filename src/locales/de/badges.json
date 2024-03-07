@@ -5,11 +5,11 @@
 	},
 	"translator": {
 		"name": "Übersetzer",
-		"description": "Benutzer, die den Bot über {{link}} in andere Sprachen übersetzt haben"
+		"description": "Benutzer, die den Bot über {{- translationLink}} in andere Sprachen übersetzt haben"
 	},
 	"donator": {
 		"name": "Spender",
-		"description": "Nutzer, die dem Bot über {{link}} finanziell unterstützt haben"
+		"description": "Nutzer, die dem Bot über {{- donationLink}} finanziell unterstützt haben"
 	},
 	"core_developer": {
 		"name": "Core Entwickler",
