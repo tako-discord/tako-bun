@@ -65,8 +65,13 @@
 		},
 		"modal": {
 			"title": "Feedback",
-			"response": "Successfully sent your feedback to the developers of {{client}}!",
-			"error": "An error occurred while sending your feedback. Please try again later. If this error persists, please contact the developers via their [support server](<{{supportServer}}>).",
+			"response": {
+				"title": "Feedback has been sucessfully sent!"
+			},
+			"error": {
+				"title": "An error occurred while sending your feedback.",
+				"description": "Please try again later. If this error persists, please contact the developers via their [support server](<{{supportServer}}>)."
+			},
 			"feedbackTitle": {
 				"id": "feedbackTitle",
 				"label": "Title",

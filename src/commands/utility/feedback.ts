@@ -93,7 +93,7 @@ export default {
 		if (team?.id) {
 			const embed = createEmbed({
 				color: config.colors.green,
-				title: i18n.t('feedback.modal.response', { ns: 'utility', lng, client: interaction.client.user.tag }),
+				title: i18n.t('feedback.modal.response.title', { ns: 'utility', lng }),
 				emoji: config.emojis.success,
 			});
 
@@ -115,7 +115,8 @@ export default {
 
 		const embed = createEmbed({
 			color: config.colors.red,
-			title: i18n.t('feedback.modal.error', { ns: 'utility', lng, supportServer: config.supportServer }),
+			title: i18n.t('feedback.modal.error.title', { ns: 'utility', lng }),
+			description: i18n.t('feedback.modal.error.description', { ns: 'utility', lng, supportServer: config.supportServer }),
 			emoji: config.emojis.error,
 		});
 
