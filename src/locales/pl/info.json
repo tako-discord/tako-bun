@@ -51,7 +51,22 @@
 			"noRoles": "",
 			"topRole": "",
 			"hoistRole": "",
-			"serverAvatar": ""
+			"serverAvatar": "",
+			"badges": ""
+		},
+		"badge": {
+			"name": "",
+			"description": "",
+			"options": {
+				"badge": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"notFound": {
+				"title": "",
+				"description": ""
+			}
 		}
 	},
 	"urban": {
