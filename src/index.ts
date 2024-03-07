@@ -1,11 +1,36 @@
 import { readdir } from 'node:fs/promises';
 import { URL } from 'node:url';
 import { Client, GatewayIntentBits } from 'discord.js';
+import config from '../config';
+import prisma from './database.ts';
+import { updateCoreDev } from './util/badges.ts';
 import { loadCommands, loadEvents } from './util/loaders.ts';
 import { registerEvents } from './util/registerEvents.ts';
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
+// Badges
+client.on('ready', async () => {
+	const guild_id = config.dev ? config.guilds.dev : config.guilds.main;
+	for (const badge of config.badges) {
+		await prisma.badge.upsert({
+			where: { name: badge.name },
+			update: {
+				emoji: badge.emoji
+			},
+			create: {
+				name: badge.name,
+				emoji: badge.emoji
+			}
+		});
+
+		if (badge.role && badge.name === 'core_developer') {
+			await updateCoreDev(badge.name, badge.role, guild_id, client)
+		}
+	}
+});
+
+// Commands and Events
 const commandArray = [];
 for (const dir of (await readdir(`${import.meta.dir}/commands`, { withFileTypes: true }))
 	.filter((dirent) => dirent.isDirectory())

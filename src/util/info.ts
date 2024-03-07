@@ -5,6 +5,7 @@ import type {
 	User,
 	UserFlagsBitField,
 } from 'discord.js';
+import prisma from '../database';
 import i18next from '../i18n';
 import { createEmbed, getBanner, getColor, getLanguage } from './general';
 
@@ -150,6 +151,19 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 		fields.push({
 			name: i18next.t('info.user.server', { ns: 'info', lng: language }),
 			value: server.join(seperator),
+		});
+	}
+
+	const badges = await prisma.badge.findMany({ where: { users: { has: target.id } } });
+	if (badges) {
+		const badgeArray = [''];
+		for (const badge of badges) {
+			badgeArray.push(`${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng: language })}`);
+		}
+
+		fields.push({
+			name: i18next.t('info.user.badges', { ns: 'info', lng: language, client: interaction.client.user.displayName }),
+			value: badgeArray.join(seperator),
 		});
 	}
 

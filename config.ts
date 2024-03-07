@@ -39,6 +39,12 @@ const config = {
 			pro: 'https://api.deepl.com/v2',
 		},
 	},
+	badges: [
+		{ name: "alpha_tester", emoji: '🧪', },
+		{ name: "translator", emoji: '🌐' },
+		{ name: "donator", emoji: '💖' },
+		{ name: "core_developer", emoji:'🛠️', role: '911955855048585218' }
+	]
 };
 
 export default config;

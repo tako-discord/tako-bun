@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,18 +8,13 @@ datasource db {
 }
 
 model User {
-  id         String  @id @unique
-  uuid       String  @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  language   String  @default("en")
-  color      Int?
-  background String?
-  license    String?
+  id                    String  @id @unique
+  uuid                  String  @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  license               String?
+  background            String?
+  color                 Int?
+  language              String  @default("en")
   quickTranslateTooltip Boolean @default(true)
-}
-
-enum ReplyStyle {
-  minWebhook
-  embed
 }
 
 model Guild {
@@ -38,7 +30,18 @@ model Guild {
 }
 
 model Channel {
-  id             String  @id @unique
-  stickyMessage String?
+  id            String  @id @unique
   stickyEmbed   Boolean @default(false)
+  stickyMessage String?
+}
+
+model Badge {
+  name  String   @id
+  emoji String
+  users String[]
+}
+
+enum ReplyStyle {
+  minWebhook
+  embed
 }

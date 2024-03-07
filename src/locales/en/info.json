@@ -51,7 +51,22 @@
 			"noRoles": "*No Roles*",
 			"topRole": "**Top Role**: <@&{{role}}>",
 			"hoistRole": "**Hoist Role**: <@&{{role}}>",
-			"serverAvatar": "**Server Avatar**: "
+			"serverAvatar": "**Server Avatar**: ",
+			"badges": "{{client}} Badges"
+		},
+		"badge": {
+			"name": "badge",
+			"description": "Get info about a badge",
+			"options": {
+				"badge": {
+					"name": "badge",
+					"description": "The badge to get the info from"
+				}
+			},
+			"notFound": {
+				"title": "Badge not found",
+				"description": "The badge `{{badge}}` could not be found"
+			}
 		}
 	},
 	"urban": {

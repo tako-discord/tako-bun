@@ -7,7 +7,7 @@ type paginationEmojis = keyof (typeof config.emojis)['pagination'];
 
 export type EmbedOptions = {
 	author?: EmbedAuthorOptions;
-	color: number | keyof typeof config.colors;
+	color?: number | keyof typeof config.colors;
 	description?: string;
 	emoji?: (typeof config.emojis.pagination)[paginationEmojis] | (typeof config.emojis)[baseEmojis];
 	fields?: APIEmbedField[];
