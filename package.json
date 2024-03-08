@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@discordjs/core": "^1.1.1",
-		"@linear/sdk": "^16.0.0",
+		"@linear/sdk": "^17.0.1",
 		"@prisma/client": "^5.10.2",
 		"discord.js": "^14.14.1",
 		"i18next": "^23.10.0",
