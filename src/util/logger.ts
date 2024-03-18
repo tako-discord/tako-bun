@@ -1,4 +1,4 @@
-import type { ILogObj } from 'tslog';
+import type { ILogObj, ILogObjMeta } from 'tslog';
 import { Logger } from 'tslog';
 import config from '../../config.ts';
 
@@ -10,14 +10,13 @@ export const logger: Logger<ILogObj> = new Logger({
 	minLevel: config.dev ? 2 : 3,
 	type: 'hidden',
 });
-logger.attachTransport(async (logObj) => {
+
+logger.attachTransport(async (logObj: ILogObj & ILogObjMeta) => {
 	writer.ref();
-	// eslint-disable-next-line @typescript-eslint/no-base-to-string
 	writer.write(
-		`${logObj._meta.date.toUTCString()} | ${logObj._meta.logLevelName} | ${
-			// eslint-disable-next-line @typescript-eslint/no-base-to-string
-			logObj['0']
-		}\n`,
+		`${logObj._meta.date.toUTCString()} | ${logObj._meta.logLevelName} | ${JSON.stringify(
+			logObj[0]
+		)}\n`,
 	);
 	await writer.flush();
 	writer.unref();
