@@ -24,5 +24,19 @@
 				"description": "Chance of replacing an exclamation!1!! (in %, default: 25%)"
 			}
 		}
+	},
+	"ip": {
+		"name": "ip",
+		"description": "Get the IP of an user",
+		"options": {
+			"user": {
+				"name": "user",
+				"description": "The user to get the IP of"
+			}
+		},
+		"embed": {
+			"author": "{{user}}'s IP",
+			"footer": "For legal reasons, this is a joke."
+		}
 	}
 }

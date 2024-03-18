@@ -15,6 +15,7 @@ model User {
   color                 Int?
   language              String  @default("en")
   quickTranslateTooltip Boolean @default(true)
+  ip                    String?
 }
 
 model Guild {
