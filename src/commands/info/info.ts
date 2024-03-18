@@ -1,3 +1,4 @@
+import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
 import prisma from '../../database.ts';
@@ -44,7 +45,7 @@ export default {
 				),
 		)
 		.toJSON(),
-	async execute(interaction) {
+	async execute(interaction: ChatInputCommandInteraction) {
 		if (interaction.options.getSubcommand() === i18next.t('info.user.name', { ns: 'info' })) {
 			const target =
 				interaction.options.getUser(i18next.t('info.user.options.user.name', { ns: 'info' })) ?? interaction.user;
@@ -52,7 +53,7 @@ export default {
 		}
 
 		if (interaction.options.getSubcommand() === i18next.t('info.badge.name', { ns: 'info' })) {
-			const badge = interaction.options.getString(i18next.t('info.badge.options.badge.name', { ns: 'info' }));
+			const badge = interaction.options.getString(i18next.t('info.badge.options.badge.name', { ns: 'info' })) ?? undefined;
 			const lng = await getLanguage(interaction.guildId, interaction.user.id, true);
 			
 			const badgeData = await prisma.badge.findFirst({
