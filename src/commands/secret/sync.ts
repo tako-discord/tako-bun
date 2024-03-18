@@ -4,7 +4,11 @@ import { REST, SlashCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
 import i18next from '../../i18n.ts';
 import { isDev } from '../../util/checks.ts';
-import { createEmbed, getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import {
+	createEmbed,
+	getLanguage,
+	slashCommandTranslator,
+} from '../../util/general.ts';
 import { loadCommands } from '../../util/loaders.ts';
 import type { Command } from '../index.ts';
 
@@ -13,19 +17,30 @@ export default {
 		.setName(i18next.t('sync.name', { ns: 'secret' }))
 		.setNameLocalizations(slashCommandTranslator('sync.name', 'secret'))
 		.setDescription(i18next.t('sync.description', { ns: 'secret' }))
-		.setDescriptionLocalizations(slashCommandTranslator('sync.description', 'secret'))
+		.setDescriptionLocalizations(
+			slashCommandTranslator('sync.description', 'secret'),
+		)
 		.setDefaultMemberPermissions(0)
 		.toJSON(),
 	async execute(interaction) {
 		await interaction.deferReply({ ephemeral: true });
-		const language = await getLanguage(interaction.guildId, interaction.user.id);
+		const language = await getLanguage(
+			interaction.guildId,
+			interaction.user.id,
+		);
 
 		if (!isDev(interaction.client, interaction.user.id)) {
 			const embed = createEmbed({
 				color: 'red',
-				description: i18next.t('checks.devOnly.title', { ns: 'errors', lng: language }),
+				description: i18next.t('checks.devOnly.title', {
+					ns: 'errors',
+					lng: language,
+				}),
 				emoji: config.emojis.error,
-				title: i18next.t('checks.devOnly.title', { ns: 'errors', lng: language }),
+				title: i18next.t('checks.devOnly.title', {
+					ns: 'errors',
+					lng: language,
+				}),
 			});
 			await interaction.editReply({ embeds: [embed] });
 			return;
@@ -38,7 +53,9 @@ export default {
 		for (const file of (await readdir(directory, { withFileTypes: true }))
 			.filter((dirent) => dirent.isDirectory())
 			.map((dirent) => dirent.name)) {
-			commands.push(await loadCommands(Bun.pathToFileURL(`${directory}/${file}`)));
+			commands.push(
+				await loadCommands(Bun.pathToFileURL(`${directory}/${file}`)),
+			);
 		}
 
 		for (const command of commands) {
@@ -58,7 +75,10 @@ export default {
 				commandData,
 			);
 		} else {
-			result = await api.applicationCommands.bulkOverwriteGlobalCommands(Bun.env.APPLICATION_ID!, commandData);
+			result = await api.applicationCommands.bulkOverwriteGlobalCommands(
+				Bun.env.APPLICATION_ID!,
+				commandData,
+			);
 		}
 
 		await interaction.editReply({

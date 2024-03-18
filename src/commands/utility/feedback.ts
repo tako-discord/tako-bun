@@ -1,9 +1,22 @@
-import type { ModalActionRowComponentBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import type {
+	ModalActionRowComponentBuilder,
+	ChatInputCommandInteraction,
+} from 'discord.js';
+import {
+	ActionRowBuilder,
+	ModalBuilder,
+	SlashCommandBuilder,
+	TextInputBuilder,
+	TextInputStyle,
+} from 'discord.js';
 import config from '../../../config.ts';
 import i18n from '../../i18n.ts';
 import linear from '../../linear.ts';
-import { createEmbed, getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import {
+	createEmbed,
+	getLanguage,
+	slashCommandTranslator,
+} from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 let priority = 0;
@@ -13,45 +26,84 @@ export default {
 		.setName(i18n.t('feedback.name', { ns: 'utility' }))
 		.setNameLocalizations(slashCommandTranslator('feedback.name', 'utility'))
 		.setDescription(i18n.t('feedback.description', { ns: 'utility' }))
-		.setDescriptionLocalizations(slashCommandTranslator('feedback.description', 'utility'))
+		.setDescriptionLocalizations(
+			slashCommandTranslator('feedback.description', 'utility'),
+		)
 		.addNumberOption((option) =>
 			option
 				.setName(i18n.t('feedback.options.priority.name', { ns: 'utility' }))
-				.setNameLocalizations(slashCommandTranslator('feedback.options.priority.name', 'utility'))
-				.setDescription(i18n.t('feedback.options.priority.description', { ns: 'utility' }))
-				.setDescriptionLocalizations(slashCommandTranslator('feedback.options.priority.description', 'utility'))
+				.setNameLocalizations(
+					slashCommandTranslator('feedback.options.priority.name', 'utility'),
+				)
+				.setDescription(
+					i18n.t('feedback.options.priority.description', { ns: 'utility' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator(
+						'feedback.options.priority.description',
+						'utility',
+					),
+				)
 				.addChoices(
 					{
-						name: i18n.t('feedback.options.priority.choices.none', { ns: 'utility' }),
+						name: i18n.t('feedback.options.priority.choices.none', {
+							ns: 'utility',
+						}),
 						value: 0,
-						name_localizations: slashCommandTranslator('feedback.options.priority.choices.none', 'utility'),
+						name_localizations: slashCommandTranslator(
+							'feedback.options.priority.choices.none',
+							'utility',
+						),
 					},
 					{
-						name: i18n.t('feedback.options.priority.choices.low', { ns: 'utility' }),
+						name: i18n.t('feedback.options.priority.choices.low', {
+							ns: 'utility',
+						}),
 						value: 4,
-						name_localizations: slashCommandTranslator('feedback.options.priority.choices.low', 'utility'),
+						name_localizations: slashCommandTranslator(
+							'feedback.options.priority.choices.low',
+							'utility',
+						),
 					},
 					{
-						name: i18n.t('feedback.options.priority.choices.normal', { ns: 'utility' }),
+						name: i18n.t('feedback.options.priority.choices.normal', {
+							ns: 'utility',
+						}),
 						value: 3,
-						name_localizations: slashCommandTranslator('feedback.options.priority.choices.normal', 'utility'),
+						name_localizations: slashCommandTranslator(
+							'feedback.options.priority.choices.normal',
+							'utility',
+						),
 					},
 					{
-						name: i18n.t('feedback.options.priority.choices.high', { ns: 'utility' }),
+						name: i18n.t('feedback.options.priority.choices.high', {
+							ns: 'utility',
+						}),
 						value: 2,
-						name_localizations: slashCommandTranslator('feedback.options.priority.choices.high', 'utility'),
+						name_localizations: slashCommandTranslator(
+							'feedback.options.priority.choices.high',
+							'utility',
+						),
 					},
 					{
-						name: i18n.t('feedback.options.priority.choices.urgent', { ns: 'utility' }),
+						name: i18n.t('feedback.options.priority.choices.urgent', {
+							ns: 'utility',
+						}),
 						value: 1,
-						name_localizations: slashCommandTranslator('feedback.options.priority.choices.urgent', 'utility'),
+						name_localizations: slashCommandTranslator(
+							'feedback.options.priority.choices.urgent',
+							'utility',
+						),
 					},
 				),
 		)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		const lng = await getLanguage(interaction.guildId, interaction.user.id);
-		priority = interaction.options.getNumber(i18n.t('feedback.options.priority.name', { ns: 'utility' })) ?? 0;
+		priority =
+			interaction.options.getNumber(
+				i18n.t('feedback.options.priority.name', { ns: 'utility' }),
+			) ?? 0;
 
 		const modal = new ModalBuilder()
 			.setCustomId(i18n.t('feedback.name', { ns: 'utility' }))
@@ -59,17 +111,36 @@ export default {
 			.addComponents(
 				new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
 					new TextInputBuilder()
-						.setCustomId(i18n.t('feedback.modal.feedbackTitle.id', { ns: 'utility' }))
-						.setLabel(i18n.t('feedback.modal.feedbackTitle.label', { ns: 'utility', lng }))
-						.setPlaceholder(i18n.t('feedback.modal.feedbackTitle.placeholder', { ns: 'utility', lng }))
+						.setCustomId(
+							i18n.t('feedback.modal.feedbackTitle.id', { ns: 'utility' }),
+						)
+						.setLabel(
+							i18n.t('feedback.modal.feedbackTitle.label', {
+								ns: 'utility',
+								lng,
+							}),
+						)
+						.setPlaceholder(
+							i18n.t('feedback.modal.feedbackTitle.placeholder', {
+								ns: 'utility',
+								lng,
+							}),
+						)
 						.setRequired(true)
 						.setStyle(TextInputStyle.Short),
 				),
 				new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
 					new TextInputBuilder()
 						.setCustomId(i18n.t('feedback.modal.message.id', { ns: 'utility' }))
-						.setLabel(i18n.t('feedback.modal.message.label', { ns: 'utility', lng }))
-						.setPlaceholder(i18n.t('feedback.modal.message.placeholder', { ns: 'utility', lng }))
+						.setLabel(
+							i18n.t('feedback.modal.message.label', { ns: 'utility', lng }),
+						)
+						.setPlaceholder(
+							i18n.t('feedback.modal.message.placeholder', {
+								ns: 'utility',
+								lng,
+							}),
+						)
 						.setRequired(true)
 						.setStyle(TextInputStyle.Paragraph),
 				),
@@ -79,10 +150,13 @@ export default {
 	},
 	async modalSubmit(interaction) {
 		const lng = await getLanguage(interaction.guildId, interaction.user.id);
-		const title = interaction.fields.getTextInputValue(i18n.t('feedback.modal.feedbackTitle.id', { ns: 'utility' }));
+		const title = interaction.fields.getTextInputValue(
+			i18n.t('feedback.modal.feedbackTitle.id', { ns: 'utility' }),
+		);
 		const description =
-			interaction.fields.getTextInputValue(i18n.t('feedback.modal.message.id', { ns: 'utility' })) +
-			`\n\nFeedback by ${interaction.user.tag}`;
+			interaction.fields.getTextInputValue(
+				i18n.t('feedback.modal.message.id', { ns: 'utility' }),
+			) + `\n\nFeedback by ${interaction.user.tag}`;
 
 		const labels = await linear.issueLabels();
 		const label = labels.nodes.find((lab) => lab.name === config.linear.label);

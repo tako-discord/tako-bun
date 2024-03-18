@@ -3,7 +3,12 @@ import { SlashCommandBuilder } from 'discord.js';
 import config from '../../../config.ts';
 import type { UrbanDictionaryResponse } from '../../@types/apis';
 import i18next from '../../i18n.ts';
-import { createEmbed, getColor, getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import {
+	createEmbed,
+	getColor,
+	getLanguage,
+	slashCommandTranslator,
+} from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 export default {
@@ -11,36 +16,62 @@ export default {
 		.setName(i18next.t('urban.name', { ns: 'info' }))
 		.setNameLocalizations(slashCommandTranslator('urban.name', 'info'))
 		.setDescription(i18next.t('urban.description', { ns: 'info' }))
-		.setDescriptionLocalizations(slashCommandTranslator('urban.description', 'info'))
+		.setDescriptionLocalizations(
+			slashCommandTranslator('urban.description', 'info'),
+		)
 		.addStringOption((option) =>
 			option
 				.setName(i18next.t('urban.options.term.name', { ns: 'info' }))
-				.setNameLocalizations(slashCommandTranslator('urban.options.term.name', 'info'))
-				.setDescription(i18next.t('urban.options.term.description', { ns: 'info' }))
-				.setDescriptionLocalizations(slashCommandTranslator('urban.options.term.description', 'info'))
+				.setNameLocalizations(
+					slashCommandTranslator('urban.options.term.name', 'info'),
+				)
+				.setDescription(
+					i18next.t('urban.options.term.description', { ns: 'info' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator('urban.options.term.description', 'info'),
+				)
 				.setRequired(true)
 				.setAutocomplete(true),
 		)
 		.addBooleanOption((option) =>
 			option
 				.setName(i18next.t('urban.options.strict.name', { ns: 'info' }))
-				.setNameLocalizations(slashCommandTranslator('urban.options.strict.name', 'info'))
-				.setDescription(i18next.t('urban.options.strict.description', { ns: 'info' }))
-				.setDescriptionLocalizations(slashCommandTranslator('urban.options.strict.description', 'info')),
+				.setNameLocalizations(
+					slashCommandTranslator('urban.options.strict.name', 'info'),
+				)
+				.setDescription(
+					i18next.t('urban.options.strict.description', { ns: 'info' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator('urban.options.strict.description', 'info'),
+				),
 		)
 		.addBooleanOption((option) =>
 			option
 				.setName(i18next.t('urban.options.matchCase.name', { ns: 'info' }))
-				.setNameLocalizations(slashCommandTranslator('urban.options.matchCase.name', 'info'))
-				.setDescription(i18next.t('urban.options.matchCase.description', { ns: 'info' }))
-				.setDescriptionLocalizations(slashCommandTranslator('urban.options.matchCase.description', 'info')),
+				.setNameLocalizations(
+					slashCommandTranslator('urban.options.matchCase.name', 'info'),
+				)
+				.setDescription(
+					i18next.t('urban.options.matchCase.description', { ns: 'info' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator('urban.options.matchCase.description', 'info'),
+				),
 		)
 		.addBooleanOption((option) =>
 			option
 				.setName(i18next.t('urban.options.ephemeral.name', { ns: 'info' }))
-				.setNameLocalizations(slashCommandTranslator('urban.options.ephemeral.name', 'info'))
-				.setDescription(i18next.t('urban.options.ephemeral.description', { ns: 'info' }))
-				.setDescriptionLocalizations(slashCommandTranslator('urban.options.ephemeral.description', 'info')),
+				.setNameLocalizations(
+					slashCommandTranslator('urban.options.ephemeral.name', 'info'),
+				)
+				.setDescription(
+					i18next.t('urban.options.ephemeral.description', { ns: 'info' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator('urban.options.ephemeral.description', 'info'),
+				),
 		)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
@@ -49,7 +80,11 @@ export default {
 		let matchCase = interaction.options.getBoolean('matchCase') ?? false;
 		const ephemeral = interaction.options.getBoolean('ephemeral') ?? false;
 		await interaction.deferReply({ ephemeral });
-		const lng = await getLanguage(interaction.guildId, interaction.user.id, true);
+		const lng = await getLanguage(
+			interaction.guildId,
+			interaction.user.id,
+			true,
+		);
 		let index = 0;
 		if (term.includes(' urbanApiDataIndex=')) {
 			const splitted = term.split(' urbanApiDataIndex=');
@@ -73,13 +108,20 @@ export default {
 		} catch {}
 
 		if (!body) {
-			await interaction.editReply({ content: i18next.t('urban.error', { ns: 'info', lng, term }) });
+			await interaction.editReply({
+				content: i18next.t('urban.error', { ns: 'info', lng, term }),
+			});
 			return;
 		}
 
 		if (body.statusCode !== 200) {
 			await interaction.editReply({
-				content: i18next.t('urban.error', { ns: 'info', context: body.statusCode.toString(), lng, term }),
+				content: i18next.t('urban.error', {
+					ns: 'info',
+					context: body.statusCode.toString(),
+					lng,
+					term,
+				}),
 			});
 			return;
 		}
@@ -87,15 +129,25 @@ export default {
 		const embed = createEmbed({
 			author: {
 				name: body.data[index].contributor.slice(0, 256),
+				// eslint-disable-next-line @stylistic/max-len
 				url: `https://www.urbandictionary.com/author.php?author=${encodeURIComponent(body.data[index].contributor)}`,
 			},
 			color: await getColor(interaction.guildId),
 			title: body.data[index].word.slice(0, 256),
 			description: body.data[index].meaning.slice(0, 4_096),
 			fields: [
-				{ name: i18next.t('urban.example', { ns: 'info', lng }), value: body.data[index].example.slice(0, 1_024) },
+				{
+					name: i18next.t('urban.example', { ns: 'info', lng }),
+					value: body.data[index].example.slice(0, 1_024),
+				},
 			],
-			footer: { text: i18next.t('urban.footer', { ns: 'info', lng, date: new Date(body.data[index].date) }) },
+			footer: {
+				text: i18next.t('urban.footer', {
+					ns: 'info',
+					lng,
+					date: new Date(body.data[index].date),
+				}),
+			},
 		});
 
 		await interaction.editReply({ embeds: [embed] });

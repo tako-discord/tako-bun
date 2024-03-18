@@ -37,7 +37,9 @@ export type Command = {
 };
 
 // Defines the predicate to check if an object is a valid Command type
-export const predicate: StructurePredicate<Command> = (structure): structure is Command =>
+export const predicate: StructurePredicate<Command> = (
+	structure,
+): structure is Command =>
 	Boolean(structure) &&
 	typeof structure === 'object' &&
 	'data' in structure! &&

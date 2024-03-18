@@ -1,4 +1,8 @@
-import type { APIEmbedField, EmbedAuthorOptions, EmbedFooterOptions } from 'discord.js';
+import type {
+	APIEmbedField,
+	EmbedAuthorOptions,
+	EmbedFooterOptions,
+} from 'discord.js';
 import config from '../../config.ts';
 
 const emojis = config.emojis;
@@ -9,7 +13,9 @@ export type EmbedOptions = {
 	author?: EmbedAuthorOptions;
 	color?: number | keyof typeof config.colors;
 	description?: string;
-	emoji?: (typeof config.emojis.pagination)[paginationEmojis] | (typeof config.emojis)[baseEmojis];
+	emoji?:
+		| (typeof config.emojis.pagination)[paginationEmojis]
+		| (typeof config.emojis)[baseEmojis];
 	fields?: APIEmbedField[];
 	footer?: EmbedFooterOptions | null | undefined;
 	image?: string | null;

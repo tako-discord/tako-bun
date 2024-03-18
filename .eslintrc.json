@@ -4,5 +4,14 @@
 	"parserOptions": {
 		"project": ["./tsconfig.eslint.json"]
 	},
-	"ignorePatterns": ["dist/*"]
+	"plugins": ["@stylistic"],
+	"ignorePatterns": ["dist/*"],
+	"rules": {
+		"@stylistic/max-len": [
+			"warn",
+			{
+				"code": 120
+			}
+		]
+	}
 }

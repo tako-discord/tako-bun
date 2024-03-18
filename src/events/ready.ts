@@ -11,7 +11,10 @@ export default {
 
 		setInterval(() => {
 			const activities = [
-				{ activity: `with version ${Bun.env.npm_package_version}`, type: ActivityType.Playing },
+				{
+					activity: `with version ${Bun.env.npm_package_version}`,
+					type: ActivityType.Playing,
+				},
 				{ activity: `/ Commands`, type: ActivityType.Listening },
 				{
 					activity: `${client.users.cache.size} user${client.users.cache.size > 1 ? 's' : ''}`,
@@ -25,7 +28,9 @@ export default {
 
 			const randomIndex = Math.floor(Math.random() * activities.length);
 
-			client.user.setActivity(activities[randomIndex].activity, { type: activities[randomIndex].type });
+			client.user.setActivity(activities[randomIndex].activity, {
+				type: activities[randomIndex].type,
+			});
 		}, 7_500);
 	},
 } satisfies Event<'ready'>;

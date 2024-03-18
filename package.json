@@ -32,8 +32,9 @@
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.57.0",
 		"eslint-config-neon": "^0.1.59",
-		"eslint-formatter-pretty": "^6.0.1",
-		"typescript": "^5.4.2"
+		"eslint-formatter-pretty": "^5.0.0",
+		"typescript": "^5.4.2",
+		"prettier": "^3.2.5"
 	},
 	"nodemon": {
 		"ext": "js,mjs,cjs,json,ts"

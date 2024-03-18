@@ -2,7 +2,10 @@ import { setTimeout } from 'node:timers';
 import type { Client } from 'discord.js';
 import { EmbedBuilder, Locale } from 'discord.js';
 import config from '../../config.ts';
-import type { LingvaTranslateResponse, DeeplTargetLanguageCode } from '../@types/apis';
+import type {
+	LingvaTranslateResponse,
+	DeeplTargetLanguageCode,
+} from '../@types/apis';
 import { DeeplTargetLanguageCodes } from '../@types/apis';
 import type { EmbedOptions } from '../@types/general';
 import prisma from '../database.ts';
@@ -20,7 +23,9 @@ export function createEmbed({
 	timestamp,
 	title,
 }: EmbedOptions) {
-	const embed = new EmbedBuilder().setColor(typeof color === 'string' ? config.colors[color] : color);
+	const embed = new EmbedBuilder().setColor(
+		typeof color === 'string' ? config.colors[color] : color,
+	);
 
 	// This is the logic behind using the titles as a description and optionally also adding an emoji.
 	// That will fix the issue of the emoji and title not being vertically aligned.
@@ -44,7 +49,11 @@ export function createEmbed({
 	return embed;
 }
 
-export async function getColor(guildId: string | null, userId?: string, client?: Client) {
+export async function getColor(
+	guildId: string | null,
+	userId?: string,
+	client?: Client,
+) {
 	let color = config.colors.primary;
 	if (guildId) {
 		const guild = await prisma.guild.findFirst({ where: { id: guildId } });
@@ -66,7 +75,11 @@ export async function getColor(guildId: string | null, userId?: string, client?:
 	return color;
 }
 
-export async function getLanguage(guildId: string | null, userId?: string, prioritizeGuild = false) {
+export async function getLanguage(
+	guildId: string | null,
+	userId?: string,
+	prioritizeGuild = false,
+) {
 	let language = 'en';
 	let guildAvailable = false;
 	if (guildId) {
@@ -99,14 +112,21 @@ export async function getBanner(userId: string) {
 	return user?.background;
 }
 
-export async function translate(message: string, target: string, source: string = 'auto') {
+export async function translate(
+	message: string,
+	target: string,
+	source: string = 'auto',
+) {
 	let translation = message;
 	const timeout = 3_000;
 	const timeoutPromise = new Promise<Response>((resolve) => {
 		setTimeout(resolve, timeout);
 	});
 	const response = await Promise.race([
-		fetch(config.apis.lingva + `/${source}/${target}/${encodeURIComponent(message)}`),
+		fetch(
+			config.apis.lingva +
+				`/${source}/${target}/${encodeURIComponent(message)}`,
+		),
 		timeoutPromise,
 	]);
 	let detected = null;
@@ -125,15 +145,24 @@ export async function translate(message: string, target: string, source: string 
 
 	if (
 		!detected ||
-		(DeeplTargetLanguageCodes.includes(detected.toLowerCase() as DeeplTargetLanguageCode) &&
-			DeeplTargetLanguageCodes.includes(target.toLowerCase() as DeeplTargetLanguageCode))
+		(DeeplTargetLanguageCodes.includes(
+			detected.toLowerCase() as DeeplTargetLanguageCode,
+		) &&
+			DeeplTargetLanguageCodes.includes(
+				target.toLowerCase() as DeeplTargetLanguageCode,
+			))
 	) {
 		const key = Bun.env.DEEPL_API_KEY;
 		if (key) {
-			const url = (key.endsWith(':fx') ? config.apis.deepl.free : config.apis.deepl.pro) + '/translate';
+			const url =
+				(key.endsWith(':fx') ? config.apis.deepl.free : config.apis.deepl.pro) +
+				'/translate';
 			const response = await fetch(url, {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json', Authorization: `DeepL-Auth-Key ${key}` },
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `DeepL-Auth-Key ${key}`,
+				},
 				body: JSON.stringify({
 					text: [message],
 					target_lang: target,
@@ -148,7 +177,8 @@ export async function translate(message: string, target: string, source: string 
 				} catch {}
 			}
 
-			translation = deepl.translations[0].text ?? lingva?.translation ?? message;
+			translation =
+				deepl.translations[0].text ?? lingva?.translation ?? message;
 		}
 	}
 

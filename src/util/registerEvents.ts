@@ -2,7 +2,11 @@ import { Events, type Client } from 'discord.js';
 import type { Command } from '../commands/index.ts';
 import type { Event } from '../events/index.ts';
 
-export function registerEvents(client: Client, commands?: Map<string, Command>, events?: Event[]): void {
+export function registerEvents(
+	client: Client,
+	commands?: Map<string, Command>,
+	events?: Event[],
+): void {
 	if (commands) {
 		const interactionCreateEvent: Event<Events.InteractionCreate> = {
 			name: Events.InteractionCreate,
@@ -39,14 +43,17 @@ export function registerEvents(client: Client, commands?: Map<string, Command>, 
 			},
 		};
 
-		client[interactionCreateEvent.once ? 'once' : 'on'](interactionCreateEvent.name, async (...args) =>
-			interactionCreateEvent.execute(...args),
+		client[interactionCreateEvent.once ? 'once' : 'on'](
+			interactionCreateEvent.name,
+			async (...args) => interactionCreateEvent.execute(...args),
 		);
 	}
 
 	if (events) {
 		for (const event of events) {
-			client[event.once ? 'once' : 'on'](event.name, async (...args) => event.execute(...args));
+			client[event.once ? 'once' : 'on'](event.name, async (...args) =>
+				event.execute(...args),
+			);
 		}
 	}
 }

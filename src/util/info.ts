@@ -21,16 +21,22 @@ function handleFlags(flags: Readonly<UserFlagsBitField>, language: string) {
 			addable = '';
 		}
 
-		flagsArray.push(i18next.t(`info.user.flag.${flag}`, { ns: 'info', lng: language }) + addable);
+		flagsArray.push(
+			i18next.t(`info.user.flag.${flag}`, { ns: 'info', lng: language }) +
+				addable,
+		);
 	}
 
-	if (flagsArray.length === 0) return i18next.t('info.user.noFlags', { ns: 'info', lng: language });
+	if (flagsArray.length === 0)
+		return i18next.t('info.user.noFlags', { ns: 'info', lng: language });
 	return flagsArray.join('');
 }
 
 function handleRoles(roles: GuildMemberRoleManager, language: string) {
 	const rolesArray = [];
-	const sortedRoles = Array.from(roles.cache.sort((a, b) => b.position - a.position).values());
+	const sortedRoles = Array.from(
+		roles.cache.sort((a, b) => b.position - a.position).values(),
+	);
 	const everyoneIndex = sortedRoles.indexOf(roles.guild.roles.everyone);
 	if (everyoneIndex > -1) sortedRoles.splice(everyoneIndex, 1);
 
@@ -51,11 +57,15 @@ function handleRoles(roles: GuildMemberRoleManager, language: string) {
 		rolesArray.push(role.toString() + addable);
 	}
 
-	if (rolesArray.length === 0) return i18next.t('info.user.noRoles', { ns: 'info', lng: language });
+	if (rolesArray.length === 0)
+		return i18next.t('info.user.noRoles', { ns: 'info', lng: language });
 	return rolesArray.join('');
 }
 
-export async function userInfo(interaction: CommandInteraction | UserContextMenuCommandInteraction, user: User) {
+export async function userInfo(
+	interaction: CommandInteraction | UserContextMenuCommandInteraction,
+	user: User,
+) {
 	const language = await getLanguage(interaction.guildId);
 	const target = user;
 	await target.fetch();
@@ -64,7 +74,11 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 
 	const general = [
 		'',
-		i18next.t('info.user.username', { ns: 'info', lng: language, username: target.tag }),
+		i18next.t('info.user.username', {
+			ns: 'info',
+			lng: language,
+			username: target.tag,
+		}),
 		i18next.t('info.user.id', { ns: 'info', lng: language, id: target.id }),
 		i18next.t('info.user.flags', {
 			ns: 'info',
@@ -89,29 +103,53 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 	if (target.avatar) {
 		general.push(
 			i18next.t('info.user.avatar', { ns: 'info', lng: language }) +
-				`[PNG](${target.avatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.avatarURL({
-					extension: 'jpg',
-					size: 4_096,
-				})}) | [WEBP](${target.avatarURL({ extension: 'webp', size: 4_096 })})${
+				`[PNG](${target.avatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.avatarURL(
+					{
+						extension: 'jpg',
+						size: 4_096,
+					},
+				)}) | [WEBP](${target.avatarURL({ extension: 'webp', size: 4_096 })})${
 					target.avatar.startsWith('a_')
-						? ' | [GIF](' + target.avatarURL({ forceStatic: false, size: 4_096 }) + ')'
+						? ' | [GIF](' +
+							target.avatarURL({ forceStatic: false, size: 4_096 }) +
+							')'
 						: ''
 				}`,
 		);
 	} else {
-		general.push(i18next.t('info.user.avatar', { ns: 'info', lng: language }) + `[URL](${target.defaultAvatarURL})`);
+		general.push(
+			i18next.t('info.user.avatar', { ns: 'info', lng: language }) +
+				`[URL](${target.defaultAvatarURL})`,
+		);
 	}
 
 	if (target.bannerURL()) {
 		general.push(
 			i18next.t('info.user.banner', { ns: 'info', lng: language }) +
-				`[PNG](${target.bannerURL({ extension: 'png' })}) | [JPG](${target.bannerURL({
-					extension: 'jpg', size: 4_096
-				})})${target.banner?.startsWith('a_') ? '' : ' | [WEBP](' + target.bannerURL({
-					extension: 'webp', size: 4_096
-				}) + ')'}${target.banner?.startsWith('a_') ? ' | [GIF](' + target.bannerURL({
-					forceStatic: false, size: 4_096
-				}) + ')' : ''}`,
+				`[PNG](${target.bannerURL({ extension: 'png' })}) | [JPG](${target.bannerURL(
+					{
+						extension: 'jpg',
+						size: 4_096,
+					},
+				)})${
+					target.banner?.startsWith('a_')
+						? ''
+						: ' | [WEBP](' +
+							target.bannerURL({
+								extension: 'webp',
+								size: 4_096,
+							}) +
+							')'
+				}${
+					target.banner?.startsWith('a_')
+						? ' | [GIF](' +
+							target.bannerURL({
+								forceStatic: false,
+								size: 4_096,
+							}) +
+							')'
+						: ''
+				}`,
 		);
 	}
 
@@ -127,14 +165,28 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 			i18next.t('info.user.roles', {
 				ns: 'info',
 				lng: language,
-				roles: handleRoles(member.roles, language) ?? i18next.t('info.user.noRoles', { ns: 'info', lng: language }),
+				roles:
+					handleRoles(member.roles, language) ??
+					i18next.t('info.user.noRoles', { ns: 'info', lng: language }),
 			}),
 		];
 
 		if (member.roles.cache.size > 1) {
-			server.push(i18next.t('info.user.topRole', { ns: 'info', lng: language, role: member.roles.highest.id }));
+			server.push(
+				i18next.t('info.user.topRole', {
+					ns: 'info',
+					lng: language,
+					role: member.roles.highest.id,
+				}),
+			);
 			if (member.roles.hoist)
-				server.push(i18next.t('info.user.hoistRole', { ns: 'info', lng: language, role: member.roles.hoist.id }));
+				server.push(
+					i18next.t('info.user.hoistRole', {
+						ns: 'info',
+						lng: language,
+						role: member.roles.hoist.id,
+					}),
+				);
 		}
 
 		if (member.joinedTimestamp) {
@@ -151,12 +203,21 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 		if (member.displayAvatarURL() !== target.displayAvatarURL()) {
 			server.push(
 				i18next.t('info.user.serverAvatar', { ns: 'info', lng: language }) +
-					`[PNG](${target.displayAvatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.displayAvatarURL({
+					`[PNG](${target.displayAvatarURL({
+						extension: 'png',
+						size: 4_096,
+					})}) | [JPG](${target.displayAvatarURL({
 						extension: 'jpg',
 						size: 4_096,
 					})}) | [WEBP](${target.displayAvatarURL({ extension: 'webp', size: 4_096 })})${
 						target.displayAvatarURL().startsWith('a_')
-							? ' | [GIF](' + target.avatarURL({ extension: 'gif', forceStatic: false, size: 4_096 }) + ')'
+							? ' | [GIF](' +
+								target.avatarURL({
+									extension: 'gif',
+									forceStatic: false,
+									size: 4_096,
+								}) +
+								')'
 							: ''
 					}`,
 			);
@@ -168,27 +229,45 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 		});
 	}
 
-	const badges = await prisma.badge.findMany({ where: { users: { has: target.id } } });
+	const badges = await prisma.badge.findMany({
+		where: { users: { has: target.id } },
+	});
 	if (badges) {
 		const badgeArray = [''];
 		for (const badge of badges) {
-			badgeArray.push(`${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng: language })}`);
+			badgeArray.push(
+				`${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng: language })}`,
+			);
 		}
 
 		if (badgeArray.length > 1) {
 			fields.push({
-				name: i18next.t('info.user.badges', { ns: 'info', lng: language, client: interaction.client.user.displayName }),
+				name: i18next.t('info.user.badges', {
+					ns: 'info',
+					lng: language,
+					client: interaction.client.user.displayName,
+				}),
 				value: badgeArray.join(seperator),
 			});
 		}
 	}
 
 	const embed = createEmbed({
-		title: i18next.t('info.user.title', { ns: 'info', lng: language, user: target.displayName }),
-		description: i18next.t('info.user.embedDescription', { ns: 'info', lng: language, user: target.id }),
+		title: i18next.t('info.user.title', {
+			ns: 'info',
+			lng: language,
+			user: target.displayName,
+		}),
+		description: i18next.t('info.user.embedDescription', {
+			ns: 'info',
+			lng: language,
+			user: target.id,
+		}),
 		color: await getColor(interaction.guildId, target.id, interaction.client),
 		fields,
-		thumbnail: member?.displayAvatarURL({ size: 512 }) ?? target.displayAvatarURL({ size: 512 }),
+		thumbnail:
+			member?.displayAvatarURL({ size: 512 }) ??
+			target.displayAvatarURL({ size: 512 }),
 		image: (await getBanner(target.id)) ?? target.bannerURL({ size: 512 }),
 	});
 	await interaction.reply({ embeds: [embed] });

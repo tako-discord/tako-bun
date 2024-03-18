@@ -3,7 +3,12 @@ import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
 import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
-import { createEmbed, getColor, getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import {
+	createEmbed,
+	getColor,
+	getLanguage,
+	slashCommandTranslator,
+} from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 export default {
@@ -14,14 +19,21 @@ export default {
 		.addUserOption((option) =>
 			option
 				.setName(i18next.t('ip.options.user.name', { ns: 'fun' }))
-				.setNameLocalizations(slashCommandTranslator('ip.options.user.name', 'fun'))
+				.setNameLocalizations(
+					slashCommandTranslator('ip.options.user.name', 'fun'),
+				)
 				.setDescription(i18next.t('ip.options.user.description', { ns: 'fun' }))
-				.setDescriptionLocalizations(slashCommandTranslator('ip.options.user.description', 'fun'))
+				.setDescriptionLocalizations(
+					slashCommandTranslator('ip.options.user.description', 'fun'),
+				)
 				.setRequired(false),
 		)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
-		const user = interaction.options.getUser(i18next.t('ip.options.user.name', { ns: 'fun' })) ?? interaction.user;
+		const user =
+			interaction.options.getUser(
+				i18next.t('ip.options.user.name', { ns: 'fun' }),
+			) ?? interaction.user;
 		const lng = await getLanguage(interaction.guildId);
 		const data = await prisma.user.findFirst({
 			where: {
@@ -47,7 +59,11 @@ export default {
 
 		const embed = createEmbed({
 			author: {
-				name: i18next.t('ip.embed.author', { ns: 'fun', lng, user: user.displayName }),
+				name: i18next.t('ip.embed.author', {
+					ns: 'fun',
+					lng,
+					user: user.displayName,
+				}),
 				iconURL: user.displayAvatarURL(),
 			},
 			color: await getColor(interaction.guildId, user.id, interaction.client),

@@ -5,7 +5,11 @@ import config from '../../../config.ts';
 import { languages } from '../../@types/utility.ts';
 import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
-import { createEmbed, getLanguage, slashCommandTranslator } from '../../util/general.ts';
+import {
+	createEmbed,
+	getLanguage,
+	slashCommandTranslator,
+} from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 async function logic(
@@ -17,8 +21,14 @@ async function logic(
 	if (!personal && !interaction.guildId) {
 		const invalidLanguage = createEmbed({
 			color: 'red',
-			title: i18next.t('serverRequired.title', { ns: 'errors', lng: responseLanguage }),
-			description: i18next.t('serverRequired.description', { ns: 'errors', lng: responseLanguage }),
+			title: i18next.t('serverRequired.title', {
+				ns: 'errors',
+				lng: responseLanguage,
+			}),
+			description: i18next.t('serverRequired.description', {
+				ns: 'errors',
+				lng: responseLanguage,
+			}),
 			emoji: config.emojis.error,
 		});
 		await interaction.reply({ embeds: [invalidLanguage], ephemeral: true });
@@ -28,8 +38,14 @@ async function logic(
 	if (!isLangCode(language).res) {
 		const invalidLanguage = createEmbed({
 			color: 'red',
-			title: i18next.t('language.invalidLanguage.title', { ns: 'errors', lng: responseLanguage }),
-			description: i18next.t('language.invalidLanguage.description', { ns: 'errors', lng: responseLanguage }),
+			title: i18next.t('language.invalidLanguage.title', {
+				ns: 'errors',
+				lng: responseLanguage,
+			}),
+			description: i18next.t('language.invalidLanguage.description', {
+				ns: 'errors',
+				lng: responseLanguage,
+			}),
 			emoji: config.emojis.error,
 		});
 		await interaction.reply({ embeds: [invalidLanguage], ephemeral: true });
@@ -62,22 +78,51 @@ async function logic(
 export default {
 	data: new SlashCommandBuilder()
 		.setName(i18next.t('changeLanguage.name', { ns: 'utility' }))
-		.setNameLocalizations(slashCommandTranslator('changeLanguage.name', 'utility'))
+		.setNameLocalizations(
+			slashCommandTranslator('changeLanguage.name', 'utility'),
+		)
 		.setDescription(i18next.t('changeLanguage.description', { ns: 'utility' }))
-		.setDescriptionLocalizations(slashCommandTranslator('changeLanguage.description', 'utility'))
+		.setDescriptionLocalizations(
+			slashCommandTranslator('changeLanguage.description', 'utility'),
+		)
 		.addSubcommand((subcommand) =>
 			subcommand
 				.setName(i18next.t('changeLanguage.personal.name', { ns: 'utility' }))
-				.setNameLocalizations(slashCommandTranslator('changeLanguage.personal.name', 'utility'))
-				.setDescription(i18next.t('changeLanguage.personal.description', { ns: 'utility' }))
-				.setDescriptionLocalizations(slashCommandTranslator('changeLanguage.personal.description', 'utility'))
+				.setNameLocalizations(
+					slashCommandTranslator('changeLanguage.personal.name', 'utility'),
+				)
+				.setDescription(
+					i18next.t('changeLanguage.personal.description', { ns: 'utility' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator(
+						'changeLanguage.personal.description',
+						'utility',
+					),
+				)
 				.addStringOption((option) =>
 					option
-						.setName(i18next.t('changeLanguage.options.language.name', { ns: 'utility' }))
-						.setNameLocalizations(slashCommandTranslator('changeLanguage.options.language.name', 'utility'))
-						.setDescription(i18next.t('changeLanguage.options.language.description', { ns: 'utility' }))
+						.setName(
+							i18next.t('changeLanguage.options.language.name', {
+								ns: 'utility',
+							}),
+						)
+						.setNameLocalizations(
+							slashCommandTranslator(
+								'changeLanguage.options.language.name',
+								'utility',
+							),
+						)
+						.setDescription(
+							i18next.t('changeLanguage.options.language.description', {
+								ns: 'utility',
+							}),
+						)
 						.setDescriptionLocalizations(
-							slashCommandTranslator('changeLanguage.options.language.description', 'utility'),
+							slashCommandTranslator(
+								'changeLanguage.options.language.description',
+								'utility',
+							),
 						)
 						.setAutocomplete(true)
 						.setRequired(true),
@@ -86,16 +131,41 @@ export default {
 		.addSubcommand((subcommand) =>
 			subcommand
 				.setName(i18next.t('changeLanguage.server.name', { ns: 'utility' }))
-				.setNameLocalizations(slashCommandTranslator('changeLanguage.server.name', 'utility'))
-				.setDescription(i18next.t('changeLanguage.server.description', { ns: 'utility' }))
-				.setDescriptionLocalizations(slashCommandTranslator('changeLanguage.server.description', 'utility'))
+				.setNameLocalizations(
+					slashCommandTranslator('changeLanguage.server.name', 'utility'),
+				)
+				.setDescription(
+					i18next.t('changeLanguage.server.description', { ns: 'utility' }),
+				)
+				.setDescriptionLocalizations(
+					slashCommandTranslator(
+						'changeLanguage.server.description',
+						'utility',
+					),
+				)
 				.addStringOption((option) =>
 					option
-						.setName(i18next.t('changeLanguage.options.language.name', { ns: 'utility' }))
-						.setNameLocalizations(slashCommandTranslator('changeLanguage.options.language.name', 'utility'))
-						.setDescription(i18next.t('changeLanguage.options.language.description', { ns: 'utility' }))
+						.setName(
+							i18next.t('changeLanguage.options.language.name', {
+								ns: 'utility',
+							}),
+						)
+						.setNameLocalizations(
+							slashCommandTranslator(
+								'changeLanguage.options.language.name',
+								'utility',
+							),
+						)
+						.setDescription(
+							i18next.t('changeLanguage.options.language.description', {
+								ns: 'utility',
+							}),
+						)
 						.setDescriptionLocalizations(
-							slashCommandTranslator('changeLanguage.options.language.description', 'utility'),
+							slashCommandTranslator(
+								'changeLanguage.options.language.description',
+								'utility',
+							),
 						)
 						.setAutocomplete(true)
 						.setRequired(true),
@@ -106,13 +176,20 @@ export default {
 	async execute(interaction: ChatInputCommandInteraction) {
 		const subcommand = interaction.options.getSubcommand();
 		const language =
-			interaction.options.getString(i18next.t('changeLanguage.options.language.name', { ns: 'utility' })) ?? 'en';
+			interaction.options.getString(
+				i18next.t('changeLanguage.options.language.name', { ns: 'utility' }),
+			) ?? 'en';
 		const responseLanguage = await getLanguage(
 			interaction.guildId,
-			subcommand === i18next.t('changeLanguage.personal.name', { ns: 'utility' }) ? interaction.user.id : undefined,
+			subcommand ===
+				i18next.t('changeLanguage.personal.name', { ns: 'utility' })
+				? interaction.user.id
+				: undefined,
 		);
 
-		if (subcommand === i18next.t('changeLanguage.server.name', { ns: 'utility' })) {
+		if (
+			subcommand === i18next.t('changeLanguage.server.name', { ns: 'utility' })
+		) {
 			await logic(interaction, language, responseLanguage, false);
 		} else {
 			await logic(interaction, language, responseLanguage, true);

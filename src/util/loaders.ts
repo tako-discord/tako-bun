@@ -50,7 +50,9 @@ export async function loadStructures<T>(
 
 		// If the file is a directory and recursive is true, recursively load the structures in the directory
 		if (statFile.isDirectory() && recursive) {
-			structures.push(...(await loadStructures(`${dir}/${file}`, predicate, recursive)));
+			structures.push(
+				...(await loadStructures(`${dir}/${file}`, predicate, recursive)),
+			);
 			continue;
 		}
 
@@ -64,13 +66,19 @@ export async function loadStructures<T>(
 	return structures;
 }
 
-export async function loadCommands(dir: PathLike, recursive = true): Promise<Map<string, Command>> {
+export async function loadCommands(
+	dir: PathLike,
+	recursive = true,
+): Promise<Map<string, Command>> {
 	return (await loadStructures(dir, commandPredicate, recursive)).reduce(
 		(acc, cur) => acc.set(cur.data.name, cur),
 		new Map<string, Command>(),
 	);
 }
 
-export async function loadEvents(dir: PathLike, recursive = true): Promise<Event[]> {
+export async function loadEvents(
+	dir: PathLike,
+	recursive = true,
+): Promise<Event[]> {
 	return loadStructures(dir, eventPredicate, recursive);
 }

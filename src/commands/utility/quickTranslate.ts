@@ -9,13 +9,21 @@ import {
 import config from '../../../config.ts';
 import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
-import { createEmbed, getColor, getLanguage, slashCommandTranslator, translate } from '../../util/general.ts';
+import {
+	createEmbed,
+	getColor,
+	getLanguage,
+	slashCommandTranslator,
+	translate,
+} from '../../util/general.ts';
 import type { Command } from '../index.ts';
 
 export default {
 	data: new ContextMenuCommandBuilder()
 		.setName(i18next.t('quickTranslate.name', { ns: 'utility' }))
-		.setNameLocalizations(slashCommandTranslator('quickTranslate.name', 'utility'))
+		.setNameLocalizations(
+			slashCommandTranslator('quickTranslate.name', 'utility'),
+		)
 		.setType(ApplicationCommandType.Message)
 		.toJSON(),
 	async execute(interaction: MessageContextMenuCommandInteraction) {
@@ -24,8 +32,12 @@ export default {
 		const message = interaction.targetMessage;
 
 		const tooltip =
-			(await prisma.user.findFirst({ select: { quickTranslateTooltip: true }, where: { id: interaction.user.id } }))
-				?.quickTranslateTooltip ?? true;
+			(
+				await prisma.user.findFirst({
+					select: { quickTranslateTooltip: true },
+					where: { id: interaction.user.id },
+				})
+			)?.quickTranslateTooltip ?? true;
 		if (tooltip) {
 			await prisma.user.upsert({
 				where: { id: interaction.user.id },
@@ -59,10 +71,21 @@ export default {
 		);
 
 		const embed = createEmbed({
-			author: { name: message.author.tag, iconURL: message.author.displayAvatarURL() },
+			author: {
+				name: message.author.tag,
+				iconURL: message.author.displayAvatarURL(),
+			},
 			color: await getColor(interaction.guildId, interaction.user.id),
 			description: translation,
-			footer: tooltip ? { text: i18next.t('quickTranslate.tooltip', { ns: 'utility', lng, command }) } : null,
+			footer: tooltip
+				? {
+						text: i18next.t('quickTranslate.tooltip', {
+							ns: 'utility',
+							lng,
+							command,
+						}),
+					}
+				: null,
 		});
 		await interaction.editReply({ embeds: [embed], components: [row] });
 	},

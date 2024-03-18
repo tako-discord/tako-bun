@@ -8,12 +8,19 @@ const commands = [];
 const commandData = [];
 
 for (const dir of (
-	await readdir(`${import.meta.dir.slice(0, import.meta.dir.length - 5)}/commands`, { withFileTypes: true })
+	await readdir(
+		`${import.meta.dir.slice(0, import.meta.dir.length - 5)}/commands`,
+		{ withFileTypes: true },
+	)
 )
 	.filter((dirent) => dirent.isDirectory())
 	.map((dirent) => dirent.name)) {
 	commands.push(
-		await loadCommands(Bun.pathToFileURL(`${import.meta.dir.slice(0, import.meta.dir.length - 5)}/commands/${dir}`)),
+		await loadCommands(
+			Bun.pathToFileURL(
+				`${import.meta.dir.slice(0, import.meta.dir.length - 5)}/commands/${dir}`,
+			),
+		),
 	);
 }
 
@@ -34,8 +41,15 @@ if (config.dev && config.guilds.dev) {
 		commandData,
 	);
 } else {
-	result = await api.applicationCommands.bulkOverwriteGlobalCommands(Bun.env.APPLICATION_ID!, commandData);
-	await api.applicationCommands.bulkOverwriteGuildCommands(Bun.env.APPLICATION_ID!, config.guilds.dev!, []);
+	result = await api.applicationCommands.bulkOverwriteGlobalCommands(
+		Bun.env.APPLICATION_ID!,
+		commandData,
+	);
+	await api.applicationCommands.bulkOverwriteGuildCommands(
+		Bun.env.APPLICATION_ID!,
+		config.guilds.dev!,
+		[],
+	);
 }
 
 console.info(

@@ -7,7 +7,9 @@ import { updateRoleBadge } from './util/badges.ts';
 import { loadCommands, loadEvents } from './util/loaders.ts';
 import { registerEvents } from './util/registerEvents.ts';
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
+const client = new Client({
+	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+});
 
 // Badges
 client.on('ready', async () => {
@@ -30,10 +32,14 @@ client.on('ready', async () => {
 
 // Commands and Events
 const commandArray = [];
-for (const dir of (await readdir(`${import.meta.dir}/commands`, { withFileTypes: true }))
+for (const dir of (
+	await readdir(`${import.meta.dir}/commands`, { withFileTypes: true })
+)
 	.filter((dirent) => dirent.isDirectory())
 	.map((dirent) => dirent.name)) {
-	commandArray.push(await loadCommands(Bun.pathToFileURL(`${import.meta.dir}/commands/${dir}`)));
+	commandArray.push(
+		await loadCommands(Bun.pathToFileURL(`${import.meta.dir}/commands/${dir}`)),
+	);
 }
 
 const commands = new Map();
