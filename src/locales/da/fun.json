@@ -24,5 +24,19 @@
 				"description": ""
 			}
 		}
+	},
+	"ip": {
+		"name": "",
+		"description": "",
+		"options": {
+			"user": {
+				"name": "",
+				"description": ""
+			}
+		},
+		"embed": {
+			"author": "",
+			"footer": ""
+		}
 	}
 }

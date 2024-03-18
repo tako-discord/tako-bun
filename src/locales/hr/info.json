@@ -44,6 +44,7 @@
 			},
 			"created": "**Stvoreno**: {{- date }} ({{- relative}})",
 			"avatar": "**Avatar**: ",
+			"banner": "",
 			"server": "Server",
 			"joined": "**Pridružio se**: {{- date}} ({{- relative}})",
 			"unknown": "Nepoznato",
@@ -52,6 +53,7 @@
 			"topRole": "**Najviša uloga**: <@&{{role}}>",
 			"hoistRole": "**Vidljiva uloga**: <@&{{role}}>",
 			"serverAvatar": "**Server Avatar**: ",
+			"serverBanner": "",
 			"badges": ""
 		},
 		"badge": {
