@@ -53,9 +53,10 @@ export default {
 		}
 
 		if (interaction.options.getSubcommand() === i18next.t('info.badge.name', { ns: 'info' })) {
-			const badge = interaction.options.getString(i18next.t('info.badge.options.badge.name', { ns: 'info' })) ?? undefined;
+			const badge =
+				interaction.options.getString(i18next.t('info.badge.options.badge.name', { ns: 'info' })) ?? undefined;
 			const lng = await getLanguage(interaction.guildId, interaction.user.id, true);
-			
+
 			const badgeData = await prisma.badge.findFirst({
 				where: {
 					name: badge,
@@ -80,9 +81,14 @@ export default {
 				embeds: [
 					createEmbed({
 						title: `${badgeData.emoji} ${i18next.t(`${badgeData.name}.name`, { ns: 'badges', lng })}`,
-						description: i18next.t(`${badgeData.name}.description`, { ns: 'badges', lng, translationLink: config.links.translate.masked, donationLink: config.links.donate.masked }),
-					})
-				]
+						description: i18next.t(`${badgeData.name}.description`, {
+							ns: 'badges',
+							lng,
+							translationLink: config.links.translate.masked,
+							donationLink: config.links.donate.masked,
+						}),
+					}),
+				],
 			});
 		}
 	},
@@ -91,19 +97,25 @@ export default {
 		const lng = await getLanguage(interaction.guildId, interaction.user.id);
 
 		const focusedValue = interaction.options.getFocused().toLowerCase();
-		const filtered = []
+		const filtered = [];
 
 		for (const badge of badges) {
 			const localizedBadgeName = i18next.t(`${badge.name}.name`, { ns: 'badges', lng }).toLowerCase();
 			const englishBadgeName = i18next.t(`${badge.name}.name`, { ns: 'badges' }).toLowerCase();
 
-			if (badge.name.startsWith(focusedValue) || focusedValue === badge.emoji || localizedBadgeName.startsWith(focusedValue) || englishBadgeName.startsWith(focusedValue)) {
-				filtered.push({ name: `${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng })}`, value: badge.name });
+			if (
+				badge.name.startsWith(focusedValue) ||
+				focusedValue === badge.emoji ||
+				localizedBadgeName.startsWith(focusedValue) ||
+				englishBadgeName.startsWith(focusedValue)
+			) {
+				filtered.push({
+					name: `${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng })}`,
+					value: badge.name,
+				});
 			}
 		}
-		
-		await interaction.respond(
-			filtered.map(choice => ({ name: choice.name, value: choice.value })),
-		);
-	}
+
+		await interaction.respond(filtered.map((choice) => ({ name: choice.name, value: choice.value })));
+	},
 } satisfies Command;

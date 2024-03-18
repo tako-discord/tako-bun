@@ -88,7 +88,11 @@ export default {
 				const response = createEmbed({
 					color: config.colors.green,
 					emoji: config.emojis.success,
-					title: i18next.t('stickyMessages.set.modal.response', { ns: 'utility', channel: `<#${channel.id}>`, lng: language }),
+					title: i18next.t('stickyMessages.set.modal.response', {
+						ns: 'utility',
+						channel: `<#${channel.id}>`,
+						lng: language,
+					}),
 				});
 
 				await interaction.reply({ embeds: [response], ephemeral: true });

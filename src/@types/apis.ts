@@ -24,81 +24,81 @@ export type UrbanDictionaryResponse = {
 
 // Lingva Translate
 type DefinitionsGroup = {
-    list: {
-        definition: string,
-        example: string,
-        field?: string,
-        synonyms: string[]
-    }[],
-    type: string
-}
+	list: {
+		definition: string;
+		example: string;
+		field?: string;
+		synonyms: string[];
+	}[];
+	type: string;
+};
 
 type ExtraTranslationsGroup = {
 	list: {
-        article?: string,
-        frequency: number,
-        meanings: string[],
-        word: string
-	}[],
-    type: string
-}
+		article?: string;
+		frequency: number;
+		meanings: string[];
+		word: string;
+	}[];
+	type: string;
+};
 
 type TranslationInfo = {
-    definitions: DefinitionsGroup[],
-    detectedSource?: string,
-    examples: string[],
-    extraTranslations: ExtraTranslationsGroup[],
-    pronunciation: {
-        query?: string,
-        translation?: string
-    },
-    similar: string[]
-}
+	definitions: DefinitionsGroup[];
+	detectedSource?: string;
+	examples: string[];
+	extraTranslations: ExtraTranslationsGroup[];
+	pronunciation: {
+		query?: string;
+		translation?: string;
+	};
+	similar: string[];
+};
 
 export type LingvaTranslateResponse = {
-    info?: TranslationInfo,
-    translation: string
-}
+	info?: TranslationInfo;
+	translation: string;
+};
 
 // DeepL
 const CommonLanguageCodes = [
-    'bg',
-    'cs',
-    'da',
-    'de',
-    'el',
-    'es',
-    'et',
-    'fi',
-    'fr',
-    'hu',
-    'id',
-    'it',
-    'ja',
-    'ko',
-    'lt',
-    'lv',
-    'nb',
-    'nl',
-    'pl',
-    'ro',
-    'ru',
-    'sk',
-    'sl',
-    'sv',
-    'tr',
-    'uk',
-    'zh',
+	'bg',
+	'cs',
+	'da',
+	'de',
+	'el',
+	'es',
+	'et',
+	'fi',
+	'fr',
+	'hu',
+	'id',
+	'it',
+	'ja',
+	'ko',
+	'lt',
+	'lv',
+	'nb',
+	'nl',
+	'pl',
+	'ro',
+	'ru',
+	'sk',
+	'sl',
+	'sv',
+	'tr',
+	'uk',
+	'zh',
 ] as const;
 
 export const DeeplTargetLanguageCodes = [
-    ...CommonLanguageCodes,
-    'en-GB',
-    'en-US',
-    'pt-BR',
-    'pt-PT',
-    'en',
-    'pt'
+	...CommonLanguageCodes,
+	'en-GB',
+	'en-US',
+	'pt-BR',
+	'pt-PT',
+	'en',
+	'pt',
 ] as const;
 
-export type DeeplTargetLanguageCode = typeof DeeplTargetLanguageCodes[number];
+export type DeeplTargetLanguageCode = (typeof DeeplTargetLanguageCodes)[number];

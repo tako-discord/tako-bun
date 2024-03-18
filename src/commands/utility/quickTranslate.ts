@@ -1,5 +1,11 @@
 import type { MessageContextMenuCommandInteraction } from 'discord.js';
-import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, ButtonStyle, ContextMenuCommandBuilder } from 'discord.js';
+import {
+	ActionRowBuilder,
+	ApplicationCommandType,
+	ButtonBuilder,
+	ButtonStyle,
+	ContextMenuCommandBuilder,
+} from 'discord.js';
 import config from '../../../config.ts';
 import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
@@ -17,8 +23,10 @@ export default {
 		const lng = await getLanguage(interaction.guildId, interaction.user.id);
 		const message = interaction.targetMessage;
 
-		const tooltip = (await prisma.user.findFirst({ select: { quickTranslateTooltip: true }, where: { id: interaction.user.id } }))?.quickTranslateTooltip ?? true;
-        if (tooltip) {
+		const tooltip =
+			(await prisma.user.findFirst({ select: { quickTranslateTooltip: true }, where: { id: interaction.user.id } }))
+				?.quickTranslateTooltip ?? true;
+		if (tooltip) {
 			await prisma.user.upsert({
 				where: { id: interaction.user.id },
 				update: { quickTranslateTooltip: false },
@@ -26,7 +34,11 @@ export default {
 			});
 		}
 
-       const command = '/' + i18next.t('changeLanguage.name', { ns: 'utility', lng }) + ' ' + i18next.t('changeLanguage.personal.name', { ns: 'utility', lng });
+		const command =
+			'/' +
+			i18next.t('changeLanguage.name', { ns: 'utility', lng }) +
+			' ' +
+			i18next.t('changeLanguage.personal.name', { ns: 'utility', lng });
 
 		if (!message.content) {
 			const embed = createEmbed({
@@ -39,7 +51,12 @@ export default {
 		}
 
 		const translation = await translate(message.content, lng, 'auto');
-		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(new ButtonBuilder().setURL(message.url).setLabel(i18next.t('quickTranslate.original', { ns: 'utility', lng })).setStyle(ButtonStyle.Link));
+		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+			new ButtonBuilder()
+				.setURL(message.url)
+				.setLabel(i18next.t('quickTranslate.original', { ns: 'utility', lng }))
+				.setStyle(ButtonStyle.Link),
+		);
 
 		const embed = createEmbed({
 			author: { name: message.author.tag, iconURL: message.author.displayAvatarURL() },
@@ -47,6 +64,6 @@ export default {
 			description: translation,
 			footer: tooltip ? { text: i18next.t('quickTranslate.tooltip', { ns: 'utility', lng, command }) } : null,
 		});
-		await interaction.editReply({ embeds: [embed], components: [row]});
+		await interaction.editReply({ embeds: [embed], components: [row] });
 	},
 } satisfies Command;

@@ -16,15 +16,15 @@ client.on('ready', async () => {
 		await prisma.badge.upsert({
 			where: { name: badge.name },
 			update: {
-				emoji: badge.emoji
+				emoji: badge.emoji,
 			},
 			create: {
 				name: badge.name,
-				emoji: badge.emoji
-			}
+				emoji: badge.emoji,
+			},
 		});
 
-		await updateRoleBadge(badge.name, badge.role, guild_id, client)
+		await updateRoleBadge(badge.name, badge.role, guild_id, client);
 	}
 });
 

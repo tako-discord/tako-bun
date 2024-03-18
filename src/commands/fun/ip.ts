@@ -1,10 +1,10 @@
+import { faker } from '@faker-js/faker';
 import type { ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommandBuilder } from 'discord.js';
-import { faker } from '@faker-js/faker';
+import prisma from '../../database.ts';
 import i18next from '../../i18n.ts';
 import { createEmbed, getColor, getLanguage, slashCommandTranslator } from '../../util/general.ts';
 import type { Command } from '../index.ts';
-import prisma from '../../database.ts';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -27,7 +27,7 @@ export default {
 			where: {
 				id: user.id,
 			},
-		})
+		});
 		const ip = data?.ip ?? faker.internet.ipv4();
 
 		if (!data?.ip) {
@@ -46,11 +46,14 @@ export default {
 		}
 
 		const embed = createEmbed({
-			author: { name: i18next.t("ip.embed.author", { ns: "fun", lng, user: user.displayName }), iconURL: user.displayAvatarURL() },
+			author: {
+				name: i18next.t('ip.embed.author', { ns: 'fun', lng, user: user.displayName }),
+				iconURL: user.displayAvatarURL(),
+			},
 			color: await getColor(interaction.guildId, user.id, interaction.client),
 			description: `\`${ip}\``,
 			footer: { text: i18next.t('ip.embed.footer', { ns: 'fun', lng }) },
-		})
+		});
 
 		await interaction.reply({ embeds: [embed] });
 	},

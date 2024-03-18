@@ -41,23 +41,23 @@ const config = {
 	links: {
 		support: {
 			link: 'https://discord.gg/vHhE78Fu6v',
-			masked: '[Support Server](https://discord.gg/vHhE78Fu6v)'
+			masked: '[Support Server](https://discord.gg/vHhE78Fu6v)',
 		},
 		donate: {
 			link: 'https://opencollective.com/tako',
-			masked: '[OpenCollective](https://opencollective.com/tako)'
+			masked: '[OpenCollective](https://opencollective.com/tako)',
 		},
 		translate: {
 			link: 'https://translate.tako-bot.com',
-			masked: '[Crowdin](https://translate.tako-bot.com)'
+			masked: '[Crowdin](https://translate.tako-bot.com)',
 		},
 	},
 	badges: [
-		{ name: "alpha_tester", emoji: '🧪', role: '969306314981376071' },
-		{ name: "translator", emoji: '🌐', role: '980904580286140426' },
-		{ name: "donator", emoji: '💖', role: '969286409200468028' },
-		{ name: "core_developer", emoji:'🛠️', role: '969285824107642990' }
-	]
+		{ name: 'alpha_tester', emoji: '🧪', role: '969306314981376071' },
+		{ name: 'translator', emoji: '🌐', role: '980904580286140426' },
+		{ name: 'donator', emoji: '💖', role: '969286409200468028' },
+		{ name: 'core_developer', emoji: '🛠️', role: '969285824107642990' },
+	],
 };
 
 export default config;

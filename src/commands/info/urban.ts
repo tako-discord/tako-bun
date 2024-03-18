@@ -48,7 +48,7 @@ export default {
 		let strict = interaction.options.getBoolean('strict') ?? false;
 		let matchCase = interaction.options.getBoolean('matchCase') ?? false;
 		const ephemeral = interaction.options.getBoolean('ephemeral') ?? false;
-		await interaction.deferReply({ ephemeral })
+		await interaction.deferReply({ ephemeral });
 		const lng = await getLanguage(interaction.guildId, interaction.user.id, true);
 		let index = 0;
 		if (term.includes(' urbanApiDataIndex=')) {
@@ -85,11 +85,16 @@ export default {
 		}
 
 		const embed = createEmbed({
-			author: { name: body.data[index].contributor.slice(0, 256), url: `https://www.urbandictionary.com/author.php?author=${encodeURIComponent(body.data[index].contributor)}` },
+			author: {
+				name: body.data[index].contributor.slice(0, 256),
+				url: `https://www.urbandictionary.com/author.php?author=${encodeURIComponent(body.data[index].contributor)}`,
+			},
 			color: await getColor(interaction.guildId),
 			title: body.data[index].word.slice(0, 256),
 			description: body.data[index].meaning.slice(0, 4_096),
-			fields: [{ name: i18next.t('urban.example', { ns: 'info', lng }), value: body.data[index].example.slice(0, 1_024) }],
+			fields: [
+				{ name: i18next.t('urban.example', { ns: 'info', lng }), value: body.data[index].example.slice(0, 1_024) },
+			],
 			footer: { text: i18next.t('urban.footer', { ns: 'info', lng, date: new Date(body.data[index].date) }) },
 		});
 
