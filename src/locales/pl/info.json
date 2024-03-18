@@ -44,6 +44,7 @@
 			},
 			"created": "",
 			"avatar": "",
+			"banner": "",
 			"server": "",
 			"joined": "",
 			"unknown": "",
@@ -52,6 +53,7 @@
 			"topRole": "",
 			"hoistRole": "",
 			"serverAvatar": "",
+			"serverBanner": "",
 			"badges": ""
 		},
 		"badge": {

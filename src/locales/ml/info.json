@@ -44,6 +44,7 @@
 			},
 			"created": "**സൃഷ്‌ടിച്ചത്**: {{- date }} ({{- relative}})",
 			"avatar": "**അവതാർ**: ",
+			"banner": "",
 			"server": "സെർവർ",
 			"joined": "**സൃഷ്ടിച്ചു**: {{- date}} ({{- relative}})",
 			"unknown": "അറിയപ്പെടാത്ത",
@@ -52,6 +53,7 @@
 			"topRole": "**ടോപ്പ് റോൾ**: <@&{{role}}>",
 			"hoistRole": "**ഹോസ്റ്റ് റോൾ**: <@&{{role}}>",
 			"serverAvatar": "**സെർവർ അവതാർ**: ",
+			"serverBanner": "",
 			"badges": ""
 		},
 		"badge": {

@@ -24,5 +24,19 @@
 				"description": "Chance zum Ersetzen von Ausrufen!1!! (in %, Standard: 25%)"
 			}
 		}
+	},
+	"ip": {
+		"name": "ip",
+		"description": "Kriege die IP eines Benutzers",
+		"options": {
+			"user": {
+				"name": "nutzer",
+				"description": "Der Nutzer, von dem du IP-Adresse erhalten möchtest"
+			}
+		},
+		"embed": {
+			"author": "{{user}}'s IP",
+			"footer": "Aus rechtlichen Gründen ist das ein Scherz."
+		}
 	}
 }
