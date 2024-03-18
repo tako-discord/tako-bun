@@ -74,6 +74,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 				: i18next.t('info.user.noFlags', { ns: 'info', lng: language }),
 		}),
 	];
+
 	if (target.createdTimestamp) {
 		general.push(
 			i18next.t('info.user.created', {
@@ -88,14 +89,30 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 	if (target.avatar) {
 		general.push(
 			i18next.t('info.user.avatar', { ns: 'info', lng: language }) +
-				`[PNG](${target.avatarURL({ extension: 'png' })}) | [JPG](${target.avatarURL({
+				`[PNG](${target.avatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.avatarURL({
 					extension: 'jpg',
-				})}) | [WEBP](${target.avatarURL({ extension: 'webp' })})${
-					target.avatar.startsWith('a_') ? ' | [GIF](' + target.avatarURL({ forceStatic: false }) + ')' : ''
+					size: 4_096,
+				})}) | [WEBP](${target.avatarURL({ extension: 'webp', size: 4_096 })})${
+					target.avatar.startsWith('a_')
+						? ' | [GIF](' + target.avatarURL({ forceStatic: false, size: 4_096 }) + ')'
+						: ''
 				}`,
 		);
 	} else {
 		general.push(i18next.t('info.user.avatar', { ns: 'info', lng: language }) + `[URL](${target.defaultAvatarURL})`);
+	}
+
+	if (target.bannerURL()) {
+		general.push(
+			i18next.t('info.user.banner', { ns: 'info', lng: language }) +
+				`[PNG](${target.bannerURL({ extension: 'png' })}) | [JPG](${target.bannerURL({
+					extension: 'jpg', size: 4_096
+				})})${target.banner?.startsWith('a_') ? '' : ' | [WEBP](' + target.bannerURL({
+					extension: 'webp', size: 4_096
+				}) + ')'}${target.banner?.startsWith('a_') ? ' | [GIF](' + target.bannerURL({
+					forceStatic: false, size: 4_096
+				}) + ')' : ''}`,
+		);
 	}
 
 	fields.push({
@@ -131,10 +148,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 			);
 		}
 
-		if (
-			!target.avatarURL({ extension: 'png' }) ??
-			target.defaultAvatarURL === target.displayAvatarURL({ extension: 'png' })
-		) {
+		if (member.displayAvatarURL() !== target.displayAvatarURL()) {
 			server.push(
 				i18next.t('info.user.serverAvatar', { ns: 'info', lng: language }) +
 					`[PNG](${target.displayAvatarURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.displayAvatarURL({
@@ -161,10 +175,12 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 			badgeArray.push(`${badge.emoji} ${i18next.t(`${badge.name}.name`, { ns: 'badges', lng: language })}`);
 		}
 
-		fields.push({
-			name: i18next.t('info.user.badges', { ns: 'info', lng: language, client: interaction.client.user.displayName }),
-			value: badgeArray.join(seperator),
-		});
+		if (badgeArray.length > 1) {
+			fields.push({
+				name: i18next.t('info.user.badges', { ns: 'info', lng: language, client: interaction.client.user.displayName }),
+				value: badgeArray.join(seperator),
+			});
+		}
 	}
 
 	const embed = createEmbed({
@@ -172,7 +188,7 @@ export async function userInfo(interaction: CommandInteraction | UserContextMenu
 		description: i18next.t('info.user.embedDescription', { ns: 'info', lng: language, user: target.id }),
 		color: await getColor(interaction.guildId, target.id, interaction.client),
 		fields,
-		thumbnail: target.displayAvatarURL(),
+		thumbnail: member?.displayAvatarURL({ size: 512 }) ?? target.displayAvatarURL({ size: 512 }),
 		image: (await getBanner(target.id)) ?? target.bannerURL({ size: 512 }),
 	});
 	await interaction.reply({ embeds: [embed] });

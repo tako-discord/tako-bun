@@ -44,6 +44,7 @@
 			},
 			"created": "**Created on**: {{- date }} ({{- relative}})",
 			"avatar": "**Avatar**: ",
+			"banner": "**Banner**: ",
 			"server": "Server",
 			"joined": "**Joined on**: {{- date}} ({{- relative}})",
 			"unknown": "Unknown",
@@ -52,6 +53,7 @@
 			"topRole": "**Top Role**: <@&{{role}}>",
 			"hoistRole": "**Hoist Role**: <@&{{role}}>",
 			"serverAvatar": "**Server Avatar**: ",
+			"serverBanner": "**Server Banner**: ",
 			"badges": "{{client}} Badges"
 		},
 		"badge": {
