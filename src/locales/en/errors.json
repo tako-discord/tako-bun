@@ -14,5 +14,13 @@
 	"serverRequired": {
 		"title": "Server Required",
 		"description": "You need to run this command in a server."
+	},
+	"noPermission": {
+		"title": "No Permission",
+		"description_one": "You do not have permission to run this command. You need the following permission: `{{permission}}`.",
+		"description_other": "You do not have permission to run this command. You need the following permissions: `{{permission}}`.",
+		"permissions": {
+			"manageGuild": "Manage Server"
+		}
 	}
 }

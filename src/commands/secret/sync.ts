@@ -67,6 +67,19 @@ export default {
 		const rest = new REST({ version: '10' }).setToken(Bun.env.DISCORD_TOKEN!);
 		const api = new API(rest);
 
+		for (const command of commandData) {
+			// @ts-expect-error This is not supported by discord.js yet
+			commandData[commandData.indexOf(command)].integration_types = [0, 1];
+			// @ts-expect-error This is not supported by discord.js yet
+			commandData[commandData.indexOf(command)].contexts = [0, 1, 2];
+			
+			// @ts-expect-error This is not supported by the type for some odd reason
+			if (command.dm_permission === false) {
+				// @ts-expect-error This is not supported by discord.js yet
+				commandData[commandData.indexOf(command)].contexts = [0];
+			}
+		}
+		
 		let result;
 		if (config.dev && config.guilds.dev) {
 			result = await api.applicationCommands.bulkOverwriteGuildCommands(

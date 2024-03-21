@@ -1,6 +1,6 @@
 const config = {
 	// With this enabled, the bot will sync all commands only to the dev guild, to prevent rate limiting
-	dev: true,
+	dev: false,
 	guilds: {
 		main: '884046271176912917',
 		dev: '884046271176912917',

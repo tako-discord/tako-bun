@@ -1,5 +1,5 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
-import { PermissionsBitField, SlashCommandBuilder } from 'discord.js';
+import { GuildMember, PermissionsBitField, SlashCommandBuilder } from 'discord.js';
 import { isLangCode } from 'is-language-code';
 import config from '../../../config.ts';
 import { languages } from '../../@types/utility.ts';
@@ -32,6 +32,26 @@ async function logic(
 			emoji: config.emojis.error,
 		});
 		await interaction.reply({ embeds: [invalidLanguage], ephemeral: true });
+		return;
+	}
+
+	if (!personal && !interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)) {
+		const noPermission = createEmbed({
+			color: 'red',
+			title: i18next.t('noPermission.title', {
+				ns: 'errors',
+				lng: responseLanguage,
+			}),
+			description: i18next.t('noPermission.description', {
+				ns: 'errors',
+				lng: responseLanguage,
+				permission: i18next.t('noPermission.permissions.manageGuild',
+				{ ns: 'errors', lng: responseLanguage }),
+				count: 1,
+			}),
+			emoji: config.emojis.error,
+		});
+		await interaction.reply({ embeds: [noPermission], ephemeral: true });
 		return;
 	}
 
@@ -171,7 +191,6 @@ export default {
 						.setRequired(true),
 				),
 		)
-		.setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild)
 		.toJSON(),
 	async execute(interaction: ChatInputCommandInteraction) {
 		const subcommand = interaction.options.getSubcommand();
