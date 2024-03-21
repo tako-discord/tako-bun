@@ -11,9 +11,9 @@ name: ESLint
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
   schedule:
     - cron: '00 5 * * 1'
 
@@ -33,7 +33,7 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-          
+
       - name: Install ESLint
         run: |
           bun install

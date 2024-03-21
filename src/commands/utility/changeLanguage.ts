@@ -1,5 +1,5 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
-import { GuildMember, PermissionsBitField, SlashCommandBuilder } from 'discord.js';
+import { PermissionsBitField, SlashCommandBuilder } from 'discord.js';
 import { isLangCode } from 'is-language-code';
 import config from '../../../config.ts';
 import { languages } from '../../@types/utility.ts';
@@ -35,7 +35,10 @@ async function logic(
 		return;
 	}
 
-	if (!personal && !interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)) {
+	if (
+		!personal &&
+		!interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)
+	) {
 		const noPermission = createEmbed({
 			color: 'red',
 			title: i18next.t('noPermission.title', {
@@ -45,8 +48,10 @@ async function logic(
 			description: i18next.t('noPermission.description', {
 				ns: 'errors',
 				lng: responseLanguage,
-				permission: i18next.t('noPermission.permissions.manageGuild',
-				{ ns: 'errors', lng: responseLanguage }),
+				permission: i18next.t('noPermission.permissions.manageGuild', {
+					ns: 'errors',
+					lng: responseLanguage,
+				}),
 				count: 1,
 			}),
 			emoji: config.emojis.error,

@@ -15,7 +15,7 @@ logger.attachTransport(async (logObj: ILogObj & ILogObjMeta) => {
 	writer.ref();
 	writer.write(
 		`${logObj._meta.date.toUTCString()} | ${logObj._meta.logLevelName} | ${JSON.stringify(
-			logObj[0]
+			logObj[0],
 		)}\n`,
 	);
 	await writer.flush();
