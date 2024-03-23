@@ -1,6 +1,6 @@
 {
 	"name": "tako-bun",
-	"version": "0.0.1-alpha.3",
+	"version": "1.0.0-alpha",
 	"private": true,
 	"type": "module",
 	"scripts": {
