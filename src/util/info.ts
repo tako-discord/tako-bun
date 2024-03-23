@@ -126,7 +126,7 @@ export async function userInfo(
 	if (target.bannerURL()) {
 		general.push(
 			i18next.t('info.user.banner', { ns: 'info', lng: language }) +
-				`[PNG](${target.bannerURL({ extension: 'png' })}) | [JPG](${target.bannerURL(
+				`[PNG](${target.bannerURL({ extension: 'png', size: 4_096 })}) | [JPG](${target.bannerURL(
 					{
 						extension: 'jpg',
 						size: 4_096,
@@ -203,16 +203,16 @@ export async function userInfo(
 		if (member.displayAvatarURL() !== target.displayAvatarURL()) {
 			server.push(
 				i18next.t('info.user.serverAvatar', { ns: 'info', lng: language }) +
-					`[PNG](${target.displayAvatarURL({
+					`[PNG](${member.displayAvatarURL({
 						extension: 'png',
 						size: 4_096,
-					})}) | [JPG](${target.displayAvatarURL({
+					})}) | [JPG](${member.displayAvatarURL({
 						extension: 'jpg',
 						size: 4_096,
-					})}) | [WEBP](${target.displayAvatarURL({ extension: 'webp', size: 4_096 })})${
-						target.displayAvatarURL().startsWith('a_')
+					})}) | [WEBP](${member.displayAvatarURL({ extension: 'webp', size: 4_096 })})${
+						member.displayAvatarURL().startsWith('a_')
 							? ' | [GIF](' +
-								target.avatarURL({
+							member.displayAvatarURL({
 									extension: 'gif',
 									forceStatic: false,
 									size: 4_096,

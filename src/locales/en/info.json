@@ -17,6 +17,9 @@
 					"description": "The user to get the info from"
 				}
 			},
+			"context": {
+				"name": "User Info"
+			},
 			"title": "Info for {{user}}",
 			"embedDescription": "Here is some information about <@{{user}}>",
 			"general": "General",
