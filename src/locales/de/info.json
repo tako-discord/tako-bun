@@ -17,6 +17,9 @@
 					"description": "Der Nutzer, über den du Informationen erhalten möchtest"
 				}
 			},
+			"context": {
+				"name": "Nutzer-Info"
+			},
 			"title": "Infos für {{user}}",
 			"embedDescription": "Hier sind ein paar Informationen über <@{{user}}>",
 			"general": "Generell",
@@ -44,7 +47,7 @@
 			},
 			"created": "**Erstellt am**: {{- date }} ({{- relative}})",
 			"avatar": "**Profilbild**: ",
-			"banner": "",
+			"banner": "**Banner**: ",
 			"server": "Server",
 			"joined": "**Beigetreten am**: {{- date}} ({{- relative}})",
 			"unknown": "Unbekannt",
@@ -53,7 +56,7 @@
 			"topRole": "**Höchste Rolle**: <@&{{role}}>",
 			"hoistRole": "**Hoist Rolle**: <@&{{role}}>",
 			"serverAvatar": "**Server Avatar**: ",
-			"serverBanner": "",
+			"serverBanner": "**Server Banner**: ",
 			"badges": "{{client}} Abzeichen"
 		},
 		"badge": {

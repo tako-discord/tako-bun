@@ -17,6 +17,9 @@
 					"description": "Korisnik od kojeg se dobivaju informacije"
 				}
 			},
+			"context": {
+				"name": ""
+			},
 			"title": "Info za {{user}}",
 			"embedDescription": "Evo nekih informacija o <@{{user}}>",
 			"general": "Općenito",
