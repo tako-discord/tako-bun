@@ -14,5 +14,13 @@
 	"serverRequired": {
 		"title": "സെർവർ ആവശ്യമാണ്",
 		"description": "നിങ്ങൾ ഈ കമാൻഡ് ഒരു സെർവറിൽ പ്രവർത്തിപ്പിക്കേണ്ടതുണ്ട്."
+	},
+	"noPermission": {
+		"title": "",
+		"description_one": "",
+		"description_other": "",
+		"permissions": {
+			"manageGuild": ""
+		}
 	}
 }

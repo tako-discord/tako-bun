@@ -14,5 +14,13 @@
 	"serverRequired": {
 		"title": "Server erforderlich",
 		"description": "Du musst diesen Befehl auf einem Server ausführen."
+	},
+	"noPermission": {
+		"title": "Keine Berechtigung",
+		"description_one": "Du hast keine Berechtigung, diesen Befehl auszuführen. Du brauchst die folgende Berechtigung: `{{permission}}`.",
+		"description_other": "Du hast keine Berechtigung, diesen Befehl auszuführen. Du brauchst die folgenden Berechtigungen: `{{permission}}`.",
+		"permissions": {
+			"manageGuild": "Server verwalten"
+		}
 	}
 }
