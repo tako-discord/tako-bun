@@ -10,8 +10,8 @@
 		"format": "prettier --write . && eslint ./src --ext .ts --fix --format=pretty",
 		"start": "NODE_ENV=production bun src/index.ts",
 		"dev": "NODE_ENV=development bunx nodemon --exec bun src/index.ts",
-		"migrate:postgres": "dotenv -e .env.production -- npx prisma migrate deploy",
-		"migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev"
+		"db:push": "dotenv -e .env.production -- npx prisma db push",
+		"db:migrate": "dotenv -e .env.development -- npx prisma migrate dev"
 	},
 	"dependencies": {
 		"@discordjs/core": "^1.1.1",
