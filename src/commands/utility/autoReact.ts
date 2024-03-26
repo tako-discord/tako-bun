@@ -1,5 +1,9 @@
 import type { ChatInputCommandInteraction } from 'discord.js';
-import { ChannelType, SlashCommandBuilder } from 'discord.js';
+import {
+	ChannelType,
+	PermissionFlagsBits,
+	SlashCommandBuilder,
+} from 'discord.js';
 import i18next from 'i18next';
 import config from '../../../config.ts';
 import prisma from '../../database.ts';
@@ -21,6 +25,11 @@ export default {
 		.setDescriptionLocalizations(
 			slashCommandTranslator('autoReact.description', 'utility'),
 		)
+		.setDefaultMemberPermissions(
+			PermissionFlagsBits.AddReactions |
+				PermissionFlagsBits.ManageGuildExpressions,
+		)
+		.setDMPermission(false)
 		// ADD
 		.addSubcommand((subcommand) =>
 			subcommand

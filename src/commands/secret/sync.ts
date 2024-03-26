@@ -75,7 +75,7 @@ export default {
 			// @ts-expect-error This is not supported by the type for some odd reason
 			if (command.dm_permission === false) {
 				// @ts-expect-error This is not supported by discord.js yet
-				commandData[commandData.indexOf(command)].contexts = [0];
+				commandData[commandData.indexOf(command)].integration_types = [0];
 			}
 		}
 
