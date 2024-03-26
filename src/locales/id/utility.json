@@ -84,5 +84,52 @@
 				"placeholder": ""
 			}
 		}
+	},
+	"autoReact": {
+		"name": "",
+		"description": "",
+		"add": {
+			"name": "",
+			"description": "",
+			"options": {
+				"emoji": {
+					"name": "",
+					"description": ""
+				},
+				"channel": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"title": "",
+			"response": ""
+		},
+		"remove": {
+			"name": "",
+			"description": "",
+			"options": {
+				"emoji": {
+					"name": "",
+					"description": ""
+				},
+				"channel": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"title": "",
+			"response": ""
+		},
+		"list": {
+			"name": "",
+			"description": "",
+			"options": {
+				"channel": {
+					"name": "",
+					"description": ""
+				}
+			},
+			"response": ""
+		}
 	}
 }

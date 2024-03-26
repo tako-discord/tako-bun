@@ -84,5 +84,52 @@
 				"placeholder": "Gebe hier dein Feedback ein"
 			}
 		}
+	},
+	"autoReact": {
+		"name": "automatisches-reagieren",
+		"description": "Reagiert automatisch auf jede neue Nachricht in einem Kanal mit einem festgelegten Emoji",
+		"add": {
+			"name": "hinzufügen",
+			"description": "Füge ein Emoji hinzu, der automatisch zu jeder neuen Nachricht im Kanal hinzugefügt wird",
+			"options": {
+				"emoji": {
+					"name": "emoji",
+					"description": "Das hinzuzufügende Emoji. Es kann ein benutzerdefiniertes Emoji oder ein Unicode-Emoji sein."
+				},
+				"channel": {
+					"name": "kanal",
+					"description": "Der Kanal, dem das Emoji hinzugefügt werden soll. Wenn er nicht angegeben wird, wird der aktuelle Kanal verwendet."
+				}
+			},
+			"title": "Erfolgreich hinzugefügt!",
+			"response": "Auf jede neue Nachricht in <#{{channel}}> wird nun mit {{- emojis}} reagiert."
+		},
+		"remove": {
+			"name": "entfernen",
+			"description": "Entferne ein Emoji, das automatisch zu jeder neuen Nachricht im Kanal hinzugefügt wird",
+			"options": {
+				"emoji": {
+					"name": "emoji",
+					"description": "Das zu entfernende Emoji. Kann ein benutzerdefiniertes Emoji oder ein Unicode-Emoji sein."
+				},
+				"channel": {
+					"name": "kanal",
+					"description": "Der Kanal, aus dem das Emoji entfernt werden soll. Wenn er nicht angegeben wird, wird der aktuelle Kanal verwendet."
+				}
+			},
+			"title": "Erfolgreich entfernt!",
+			"response": "Von nun an wird es keine automatischen Reaktionen in <#{{channel}}> mehr geben."
+		},
+		"list": {
+			"name": "liste",
+			"description": "Listet alle Emojis auf, die automatisch zu jeder neuen Nachricht im Kanal hinzugefügt werden",
+			"options": {
+				"channel": {
+					"name": "kanal",
+					"description": "Der Kanal, dessen Emoji(s) aufgelistet werden sollen. Wenn er nicht angegeben wird, wird der aktuelle Kanal verwendet."
+				}
+			},
+			"response": "Die folgenden Emojis werden automatisch zu jeder neuen Nachricht in <#{{channel}}> hinzugefügt:"
+		}
 	}
 }
