@@ -22,5 +22,10 @@
 		"permissions": {
 			"manageGuild": "Manage Server"
 		}
+	},
+	"autoReact": {
+		"maxEmojis": "You can only have a maximum of 20 emojis in your auto-react list.",
+		"noTextChannel": "You need to run this command in a text channel.",
+		"noEmojis": "There are no emojis in the auto-react list of <#{{channel}}>."
 	}
 }

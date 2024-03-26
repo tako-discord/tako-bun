@@ -34,6 +34,7 @@ model Channel {
   id            String  @id @unique
   stickyEmbed   Boolean @default(false)
   stickyMessage String?
+  autoReact     String[] @default([])
 }
 
 model Badge {

@@ -84,5 +84,52 @@
 				"placeholder": "Enter your feedback here"
 			}
 		}
+	},
+	"autoReact": {
+		"name": "auto-react",
+		"description": "Automatically reacts to every new message in a channel with a set emoji",
+		"add": {
+			"name": "add",
+			"description": "Add an emoji that will be automatically added to every new message in the channel",
+			"options": {
+				"emoji": {
+					"name": "emoji",
+					"description": "The emoji to add. Can be a custom emoji or a unicode emoji."
+				},
+				"channel": {
+					"name": "channel",
+					"description": "The channel to add the emoji to. If not specified, the current channel will be used."
+				}
+			},
+			"title": "Successfully added!",
+			"response": "Every new message in <#{{channel}}> will now be reacted to with {{- emojis}}."
+		},
+		"remove": {
+			"name": "remove",
+			"description": "Remove an emoji that is automatically added to every new message in the channel",
+			"options": {
+				"emoji": {
+					"name": "emoji",
+					"description": "The emoji to remove. Can be a custom emoji or a unicode emoji."
+				},
+				"channel": {
+					"name": "channel",
+					"description": "The channel to remove the emoji from. If not specified, the current channel will be used."
+				}
+			},
+			"title": "Successfully removed!",
+			"response": "There will be no more automatic reactions in <#{{channel}}> from now on."
+		},
+		"list": {
+			"name": "list",
+			"description": "List all emojis that will be automatically added to every new message in the channel",
+			"options": {
+				"channel": {
+					"name": "channel",
+					"description": "The channel to list the emoji(s) of. If not specified, the current channel will be used."
+				}
+			},
+			"response": "The following emojis are being automatically added to every new message in <#{{channel}}>:"
+		}
 	}
 }
