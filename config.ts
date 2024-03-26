@@ -1,12 +1,12 @@
 const config = {
 	// With this enabled, the bot will sync all commands only to the dev guild, to prevent rate limiting
-	dev: false,
+	dev: (Bun.env.NODE_ENV === 'development') || false,
 	guilds: {
-		main: '884046271176912917',
+		main: '952558753859919922',
 		dev: '884046271176912917',
 	},
 	// These people have access to the secret category (sync etc.)
-	devs: ['751092600890458203', '429303151598895106'],
+	devs: ['751092600890458203'],
 	colors: {
 		primary: 0x299ba3,
 		accent: 0x5bd79d,
@@ -21,8 +21,8 @@ const config = {
 	},
 	emojis: {
 		ping: '🏓',
-		success: '<:checkmark:1165419676285800498>',
-		error: '<:cross:1165419679133737030>',
+		success: '<:checkmark:1163846680811163720>',
+		error: '<:cross:1163846682077835324>',
 		pagination: {
 			first: '⏮️',
 			previous: '◀️',

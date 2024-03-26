@@ -45,6 +45,11 @@ export async function loadStructures<T>(
 			continue;
 		}
 
+		// The feedback command will be disabled, if the LINEAR environment variable is not set
+		if (file === 'feedback.ts' && !Bun.env.LINEAR) {
+			continue;
+		}
+
 		// Get the stats of the file
 		const statFile = await stat(new URL(`${dir}/${file}`));
 

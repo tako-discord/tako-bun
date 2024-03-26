@@ -8,8 +8,8 @@
 		"lint": "prettier --check . && eslint ./src --ext .ts --format=pretty",
 		"deploy": "bun src/util/deploy.ts",
 		"format": "prettier --write . && eslint ./src --ext .ts --fix --format=pretty",
-		"start": "bun src/index.ts",
-		"dev": "bunx nodemon --exec bun src/index.ts"
+		"start": "NODE_ENV=production bun src/index.ts",
+		"dev": "NODE_ENV=development bunx nodemon --exec bun src/index.ts"
 	},
 	"dependencies": {
 		"@discordjs/core": "^1.1.1",
