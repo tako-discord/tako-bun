@@ -1,6 +1,5 @@
-import type { Client } from 'discord.js';
 import config from '../../config.ts';
 
-export function isDev(client: Client, id: string) {
+export function isDev(id: string) {
 	return config.devs.includes(id);
 }

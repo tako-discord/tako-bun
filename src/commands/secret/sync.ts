@@ -29,7 +29,7 @@ export default {
 			interaction.user.id,
 		);
 
-		if (!isDev(interaction.client, interaction.user.id)) {
+		if (!isDev(interaction.user.id)) {
 			const embed = createEmbed({
 				color: 'red',
 				description: i18next.t('checks.devOnly.title', {
@@ -64,8 +64,7 @@ export default {
 			}
 		}
 
-		const rest = new REST({ version: '10' }).setToken(Bun.env.DISCORD_TOKEN!);
-		const api = new API(rest);
+		const api = new API(interaction.client.rest);
 
 		for (const command of commandData) {
 			// @ts-expect-error This is not supported by discord.js yet
