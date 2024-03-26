@@ -247,7 +247,7 @@ export async function userInfo(
 					lng: language,
 					client: interaction.client.user.displayName,
 				}),
-				value: badgeArray.join(seperator),
+				value: badgeArray.join("\n"),
 			});
 		}
 	}
